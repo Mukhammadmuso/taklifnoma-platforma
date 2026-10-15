@@ -1,0 +1,871 @@
+/*
+ * MAKTUB — qog'oz xat dunyosi.
+ * Laid qog'oz, siyoh, bordo lak, oltin varaq chiziqlari; atrofida bordo baxmal.
+ */
+
+.root {
+  --inv-font-heading: var(--mk-script), "Great Vibes", cursive;
+  --inv-font-body: var(--mk-body), "EB Garamond", Georgia, serif;
+  --inv-font-label: var(--mk-label), "Forum", Georgia, serif;
+
+  --mk-paper: #f4ecdd;
+  --mk-card: #faf5ea;
+  --mk-ink: #2b1b16;
+  --mk-ink-soft: #5e4a40;
+  --mk-wax: #7a1426;
+  --mk-wax-deep: #4a0a16;
+  --mk-gold: #a57c34;
+  --mk-gold-ink: #7a5a1f;
+  --mk-gold-light: #d9bc78;
+
+  --mk-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .26 0 0 0 0 .16 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.26'/%3E%3C/svg%3E");
+  --mk-fibres: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006 .19' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .38 0 0 0 0 .22 0 0 0 1.1 -.42'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='.2'/%3E%3C/svg%3E");
+  --mk-paper-tex: var(--mk-noise), var(--mk-fibres);
+  --mk-velvet:
+    var(--mk-noise),
+    radial-gradient(120% 70% at 50% 0%, #5b1424 0%, #3a0a14 55%, #22050b 100%);
+
+  background: #22050b;
+  color: var(--mk-ink);
+}
+
+/* Great Vibes'da Ғ Қ Ҳ yo'q — kirill yozuvida sarlavhalar rasmiy EB Garamond kursivida */
+.root:lang(uz-Cyrl) {
+  --mk-address-style: italic;
+  --inv-font-heading: var(--mk-body), "EB Garamond", Georgia, serif;
+}
+
+.root:lang(uz-Cyrl) :global(:is(.inv-title, .inv-hero__names, .inv-invite__greeting, .inv-closing__text, .inv-closing__names, .inv-countdown__state)) {
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.root:lang(uz-Cyrl) :global(.inv-hero__names) {
+  font-size: clamp(48px, 15cqi, 76px);
+  line-height: 1.04;
+}
+
+.root:lang(uz-Cyrl) :global(.inv-title) {
+  font-size: 44px;
+}
+
+.root:lang(uz-Cyrl) :global(.inv-invite__greeting) {
+  font-size: 32px;
+}
+
+.root:lang(uz-Cyrl) :global(.inv-closing__text) {
+  font-size: 38px;
+}
+
+:global(html):has(.root) {
+  background: #22050b;
+  scrollbar-color: var(--mk-gold) #22050b;
+}
+
+/* Kalligrafiyada o‘/g‘ belgisi o'qiladigan shriftda */
+.root :global(.inv-apos) {
+  font-family: var(--inv-font-body);
+  font-size: 0.6em;
+  font-style: normal;
+  margin: 0 0.03em;
+}
+
+.root ::selection {
+  background: var(--mk-wax);
+  color: var(--mk-paper);
+}
+
+.root :global(.inv-ground) {
+  background:
+    linear-gradient(rgb(34 5 11 / 0.74), rgb(34 5 11 / 0.88)),
+    url("/templates/maktub/hero.webp") center / cover no-repeat;
+  padding: 0;
+}
+
+/* ---------------- Varaq ---------------- */
+
+.root :global(.inv-sheet) {
+  max-width: 560px;
+  background-color: var(--mk-paper);
+  background-image:
+    radial-gradient(130% 60% at 50% 0%, rgb(255 252 244 / 0.7), transparent 60%),
+    radial-gradient(140% 100% at 50% 50%, transparent 62%, rgb(130 90 40 / 0.14)),
+    repeating-linear-gradient(90deg, transparent 0 33px, rgb(120 90 50 / 0.045) 33px 34px),
+    repeating-linear-gradient(0deg, transparent 0 3px, rgb(120 90 50 / 0.022) 3px 4px),
+    var(--mk-paper-tex);
+  padding-bottom: calc(120px + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 600px) {
+  .root :global(.inv-ground) {
+    padding: 56px 24px 72px;
+  }
+
+  .root :global(.inv-sheet) {
+    box-shadow:
+      0 40px 80px rgb(10 0 3 / 0.55),
+      0 3px 8px rgb(10 0 3 / 0.4);
+  }
+}
+
+.root :global(.inv-corner) {
+  position: absolute;
+  width: clamp(72px, 20vw, 104px);
+  height: auto;
+  pointer-events: none;
+}
+
+.root :global(.inv-corner--tl) {
+  top: 12px;
+  left: 12px;
+}
+
+.root :global(.inv-corner--tr) {
+  top: 12px;
+  right: 12px;
+  transform: scaleX(-1);
+}
+
+.root :global(.inv-corner--bl) {
+  bottom: 12px;
+  left: 12px;
+  transform: scaleY(-1);
+}
+
+.root :global(.inv-corner--br) {
+  bottom: 12px;
+  right: 12px;
+  transform: scale(-1, -1);
+}
+
+/* ---------------- Umumiy matn ---------------- */
+
+.root :global(.inv-section) {
+  padding-top: 72px;
+}
+
+.root :global(.inv-title) {
+  font-size: 54px;
+  color: var(--mk-wax);
+  margin-bottom: 22px;
+}
+
+.root :global(.inv-subtitle) {
+  font-size: 16px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mk-wax);
+}
+
+.root :global(.inv-divider) {
+  width: min(240px, 70%);
+  height: auto;
+  margin-top: 64px;
+}
+
+/* ---------------- Bosh ekran ---------------- */
+
+.root :global(.inv-section--hero) {
+  padding-top: 104px;
+}
+
+.root :global(.inv-hero__emblem) {
+  width: 118px;
+  margin-bottom: 18px;
+}
+
+.root :global(.inv-hero__names) {
+  font-family: var(--inv-font-heading);
+  font-size: clamp(60px, 20cqi, 96px);
+  color: var(--mk-ink);
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.root :global(.inv-hero__names[data-long]) {
+  font-size: clamp(46px, 14.5cqi, 78px);
+}
+
+.root :global(.inv-hero__amp) {
+  font-size: 0.5em;
+  color: var(--mk-gold);
+  margin: 0.1em 0 0.02em;
+  line-height: 1;
+}
+
+.root :global(.inv-hero__event) {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+  font-family: var(--inv-font-label);
+  font-size: 16px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--mk-wax);
+}
+
+.root :global(.inv-hero__event)::before,
+.root :global(.inv-hero__event)::after {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--mk-gold);
+}
+
+.root :global(.inv-hero__date) {
+  margin-top: 12px;
+  font-size: 30px;
+  letter-spacing: 0.1em;
+  color: var(--mk-ink);
+}
+
+.root :global(.inv-hero__dot) {
+  margin: 0 0.32em;
+  color: var(--mk-gold);
+}
+
+.root :global(.inv-hero__scroll) {
+  margin-top: 56px;
+  font-family: var(--inv-font-label);
+  font-size: 16px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mk-ink-soft);
+}
+
+/* Oltin ip: siyoh tomchisidek pastga tushib turadi */
+.root :global(.inv-hero__thread) {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 44px;
+  margin-top: 6px;
+  background: linear-gradient(var(--mk-gold), transparent);
+  transform-origin: top;
+}
+
+.root :global(.inv-hero__thread)::after {
+  content: "";
+  position: absolute;
+  left: -3px;
+  bottom: 6px;
+  width: 7px;
+  height: 7px;
+  background: var(--mk-wax);
+  transform: rotate(45deg);
+}
+
+.root[data-motion="on"][data-phase="open"] :global(.inv-hero__thread) {
+  animation: mk-thread 2.8s cubic-bezier(0.65, 0, 0.35, 1) 0.6s infinite;
+}
+
+@keyframes mk-thread {
+  0% {
+    transform: scaleY(0);
+  }
+  45%,
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* ---------------- Taklif matni ---------------- */
+
+.root :global(.inv-invite__greeting) {
+  font-family: var(--inv-font-heading);
+  font-size: 40px;
+  line-height: 1.2;
+  color: var(--mk-wax);
+  margin-bottom: 18px;
+  text-wrap: balance;
+}
+
+.root :global(.inv-invite__text) {
+  font-size: 19px;
+  line-height: 1.72;
+  color: var(--mk-ink);
+}
+
+.root :global(.inv-invite__text--lead)::first-letter {
+  float: left;
+  font-family: var(--inv-font-heading);
+  font-size: 3.7em;
+  line-height: 0.82;
+  color: var(--mk-wax);
+  margin: 0.08em 0.1em 0 0;
+}
+
+.root :global(.inv-invite__hosts) {
+  margin-top: 30px;
+  text-align: right;
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--mk-ink-soft);
+}
+
+.root :global(.inv-invite__hosts span) {
+  display: block;
+}
+
+.root :global(.inv-photo) {
+  padding: 10px;
+  background: var(--mk-card);
+  box-shadow:
+    0 12px 24px rgb(60 20 10 / 0.16),
+    0 2px 4px rgb(60 20 10 / 0.12);
+  transform: rotate(-1.2deg);
+  background-image:
+    linear-gradient(135deg, #3d2a1f 50%, transparent 50%),
+    linear-gradient(225deg, #3d2a1f 50%, transparent 50%),
+    linear-gradient(45deg, #3d2a1f 50%, transparent 50%),
+    linear-gradient(315deg, #3d2a1f 50%, transparent 50%);
+  background-size: 26px 26px;
+  background-position:
+    top left,
+    top right,
+    bottom left,
+    bottom right;
+  background-repeat: no-repeat;
+}
+
+/* ---------------- Sana ---------------- */
+
+.root :global(.inv-date__weekday) {
+  font-family: var(--inv-font-label);
+  font-size: 16px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mk-ink-soft);
+}
+
+.root :global(.inv-date__day) {
+  font-size: 112px;
+  font-weight: 400;
+  color: var(--mk-wax);
+  margin: 2px 0 4px;
+}
+
+.root :global(.inv-date__month) {
+  font-style: italic;
+  font-size: 26px;
+  color: var(--mk-ink);
+}
+
+.root :global(.inv-date__time) {
+  margin-top: 14px;
+  font-size: 19px;
+  color: var(--mk-ink-soft);
+}
+
+.root :global(.inv-date__time strong) {
+  font-weight: 600;
+  color: var(--mk-wax);
+  font-variant-numeric: lining-nums;
+}
+
+.root :global(.inv-cal) {
+  margin-top: 40px;
+  padding: 18px 4px 14px;
+  border-top: 1px solid rgb(165 124 52 / 0.55);
+  border-bottom: 1px solid rgb(165 124 52 / 0.55);
+}
+
+.root :global(.inv-cal__caption) {
+  font-family: var(--inv-font-label);
+  font-size: 16px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mk-gold-ink);
+  margin-bottom: 10px;
+}
+
+.root :global(.inv-cal__grid th) {
+  font-family: var(--inv-font-label);
+  font-size: 16px;
+  color: var(--mk-ink-soft);
+}
+
+.root :global(.inv-cal__grid td) {
+  font-size: 18px;
+  color: var(--mk-ink);
+}
+
+.root :global(.inv-cal__grid td:nth-child(n + 6)) {
+  color: var(--mk-wax);
+}
+
+.root :global(.inv-cal__mark) {
+  font-weight: 600;
+  color: var(--mk-wax);
+}
+
+.root :global(.mk-ring) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.15s cubic-bezier(0.65, 0, 0.35, 1) 0.25s;
+}
+
+.root[data-motion="on"] :global(.inv-cal:not([data-inview]) .mk-ring) {
+  stroke-dashoffset: 1;
+}
+
+.root :global(.inv-countdown-wrap) {
+  margin-top: 48px;
+}
+
+.root :global(.inv-countdown__num) {
+  font-size: 46px;
+  color: var(--mk-ink);
+}
+
+.root :global(.inv-countdown__label) {
+  font-family: var(--inv-font-label);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mk-ink-soft);
+}
+
+.root :global(.inv-countdown__sep) {
+  background: var(--mk-gold);
+  opacity: 0.6;
+}
+
+.root :global(.inv-countdown__state) {
+  margin-top: 14px;
+  font-family: var(--inv-font-heading);
+  font-size: 40px;
+  color: var(--mk-wax);
+}
+
+/* ---------------- Tugmalar ---------------- */
+
+.root :global(.inv-btn) {
+  border-radius: 3px;
+  font-family: var(--inv-font-body);
+}
+
+/* Asosiy harakat — bordo lak rangidagi tasma: yassi, ichida oltin ip */
+.root :global(.inv-btn--solid) {
+  border-radius: 3px;
+  color: #fbf3e4;
+  background: var(--mk-wax);
+  outline: 1px solid rgb(217 188 120 / 0.55);
+  outline-offset: -5px;
+  letter-spacing: 0.02em;
+}
+
+.root :global(.inv-btn--solid:hover) {
+  background: #8a1a2e;
+}
+
+/* Xarita tugmalari — qog'ozdagi siyoh yozuv, ikkinchi darajali */
+.root :global(.inv-venue__actions .inv-btn--solid) {
+  color: var(--mk-wax);
+  background: transparent;
+  border: 1px solid rgb(165 124 52 / 0.75);
+  outline: 0;
+}
+
+.root :global(.inv-venue__actions .inv-btn--solid:hover) {
+  background: rgb(122 20 38 / 0.06);
+  border-color: var(--mk-wax);
+}
+
+
+
+.root :global(.inv-btn--line),
+.root :global(.inv-btn--ghost) {
+  border-color: rgb(165 124 52 / 0.75);
+  background: rgb(250 245 234 / 0.55);
+  color: var(--mk-ink);
+}
+
+.root :global(.inv-btn--ghost) {
+  color: var(--mk-wax);
+}
+
+.root :global(.inv-btn--line:hover),
+.root :global(.inv-btn--ghost:hover) {
+  background: rgb(122 20 38 / 0.06);
+  border-color: var(--mk-wax);
+}
+
+.root :global(.inv-btn[data-state="copied"]) {
+  color: #2f5a2a;
+  border-color: #4f7a43;
+}
+
+.root :global(.inv-btn[data-state="failed"]) {
+  color: var(--mk-wax);
+}
+
+/* ---------------- Kun tartibi ---------------- */
+
+.root :global(.inv-program) {
+  max-width: 420px;
+  margin: 8px auto 0;
+}
+
+.root :global(.inv-program)::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: calc(64px + 12px + 9.5px);
+  width: 1px;
+  background: linear-gradient(var(--mk-gold), var(--mk-gold) 85%, transparent);
+  transform-origin: top;
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.root :global(.inv-program__time) {
+  font-family: var(--inv-font-label);
+  font-size: 19px;
+  letter-spacing: 0.04em;
+  color: var(--mk-wax);
+  padding-top: 2px;
+}
+
+.root :global(.inv-program__node) {
+  position: relative;
+  justify-self: center;
+  width: 11px;
+  height: 11px;
+  margin-top: 10px;
+  transform: rotate(45deg);
+  background: var(--mk-paper);
+  border: 1px solid var(--mk-gold);
+  box-shadow: 0 0 0 4px var(--mk-paper);
+}
+
+.root :global(.inv-program__node)::after {
+  content: "";
+  position: absolute;
+  inset: 2.5px;
+  background: var(--mk-wax);
+}
+
+.root :global(.inv-program__title) {
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--mk-ink);
+}
+
+.root :global(.inv-program__desc) {
+  margin-top: 2px;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--mk-ink-soft);
+}
+
+.root :global(.inv-program__item) {
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i) * 70ms + 150ms);
+}
+
+.root[data-motion="on"] :global(.inv-program:not([data-inview]))::before {
+  transform: scaleY(0);
+}
+
+.root[data-motion="on"] :global(.inv-program:not([data-inview]) .inv-program__item) {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* ---------------- Bilib qo'ying ---------------- */
+
+.root :global(.inv-notes) {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.root :global(.inv-notes li) {
+  font-size: 19px;
+  line-height: 1.55;
+}
+
+.root :global(.inv-notes__bullet) {
+  margin-top: 5px;
+}
+
+/* ---------------- Manzil ---------------- */
+
+.root :global(.inv-venue__art) {
+  display: block;
+  width: min(100%, 320px);
+  margin: 0 auto 22px;
+}
+
+.root :global(.inv-venue__name) {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--mk-ink);
+}
+
+.root :global(.inv-venue__address) {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--mk-ink-soft);
+}
+
+.root :global(.inv-venue__address svg) {
+  color: var(--mk-wax);
+}
+
+/* ---------------- To'yona ---------------- */
+
+.root :global(.inv-gift) {
+  max-width: 440px;
+  margin: 0 auto;
+  font-size: 19px;
+  line-height: 1.65;
+}
+
+.root :global(.inv-gift__card) {
+  padding: 18px 16px 16px;
+  background: var(--mk-card);
+  border: 1px solid rgb(165 124 52 / 0.55);
+  outline: 1px solid rgb(165 124 52 / 0.3);
+  outline-offset: -6px;
+  border-radius: 2px;
+}
+
+.root :global(.inv-gift__number) {
+  font-size: 23px;
+  color: var(--mk-ink);
+}
+
+/* ---------------- Javob xati ---------------- */
+
+.root :global(.inv-rsvp) {
+  padding: 40px 24px 32px;
+  background-color: var(--mk-card);
+  /* Uch buklangan xat: ikki buklanish izi */
+  background-image:
+    linear-gradient(
+      180deg,
+      transparent 32.6%,
+      rgb(110 70 30 / 0.1) 33.2%,
+      rgb(255 255 255 / 0.55) 33.5%,
+      transparent 34.4%,
+      transparent 65.8%,
+      rgb(110 70 30 / 0.1) 66.4%,
+      rgb(255 255 255 / 0.55) 66.7%,
+      transparent 67.6%
+    ),
+    var(--mk-paper-tex);
+  border: 1px solid rgb(165 124 52 / 0.6);
+  outline: 1px solid rgb(165 124 52 / 0.35);
+  outline-offset: -8px;
+  box-shadow:
+    0 18px 36px rgb(60 20 10 / 0.14),
+    0 2px 5px rgb(60 20 10 / 0.08);
+}
+
+.root :global(.inv-rsvp .inv-title) {
+  font-size: 50px;
+  margin-bottom: 6px;
+}
+
+.root :global(.inv-rsvp__lead) {
+  font-style: italic;
+  font-size: 18px;
+  color: var(--mk-ink-soft);
+}
+
+.root :global(.inv-field__label) {
+  font-family: var(--inv-font-label);
+  font-size: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mk-gold-ink);
+}
+
+.root :global(.inv-input) {
+  font-size: 20px;
+  border-bottom: 1px solid rgb(43 27 22 / 0.4);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  caret-color: var(--mk-wax);
+}
+
+.root :global(.inv-input::placeholder) {
+  color: #7a685e;
+  font-style: italic;
+  opacity: 1;
+}
+
+.root :global(.inv-input:focus) {
+  outline: none;
+  border-bottom-color: var(--mk-wax);
+  box-shadow: 0 1px 0 var(--mk-wax);
+}
+
+.root :global(.inv-input[aria-invalid]) {
+  border-bottom-color: #a3182e;
+}
+
+.root :global(.inv-input--area) {
+  line-height: 32px;
+  padding: 0 2px;
+  border-bottom: 0;
+  background-image: repeating-linear-gradient(transparent 0 31px, rgb(43 27 22 / 0.22) 31px 32px);
+  background-attachment: local;
+}
+
+.root :global(.inv-input--area:focus) {
+  box-shadow: none;
+  background-image: repeating-linear-gradient(transparent 0 31px, rgb(122 20 38 / 0.45) 31px 32px);
+}
+
+.root :global(.inv-choice__option) {
+  font-size: 19px;
+}
+
+.root :global(.inv-choice__box) {
+  border: 1.5px solid rgb(43 27 22 / 0.55);
+  border-radius: 3px;
+  background: rgb(255 255 255 / 0.4);
+  color: var(--mk-wax);
+}
+
+.root :global(.inv-choice__option[data-checked] .inv-choice__box) {
+  border-color: var(--mk-wax);
+}
+
+.root :global(.inv-stepper button) {
+  border-color: rgb(165 124 52 / 0.8);
+  color: var(--mk-wax);
+}
+
+.root :global(.inv-stepper output) {
+  font-size: 28px;
+  color: var(--mk-ink);
+}
+
+.root :global(.inv-field__error),
+.root :global(.inv-rsvp__error) {
+  color: #9a1428;
+  font-style: italic;
+}
+
+.root :global(.inv-rsvp__error) {
+  margin-top: 20px;
+  padding: 10px 14px;
+  border-left: 1px solid #9a1428;
+  background: rgb(154 20 40 / 0.06);
+}
+
+.root :global(.inv-rsvp__stamp) {
+  display: block;
+  width: 108px;
+  margin: 0 auto 6px;
+  transform: rotate(-9deg);
+}
+
+.root[data-motion="on"] :global(.inv-rsvp[data-fresh] .inv-rsvp__stamp) {
+  animation: mk-stamp 0.75s cubic-bezier(0.3, 0.6, 0.3, 1) both;
+}
+
+@keyframes mk-stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.9) rotate(-24deg);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(0.93) rotate(-8deg);
+  }
+  75% {
+    transform: scale(1.03) rotate(-9deg);
+  }
+  100% {
+    transform: scale(1) rotate(-9deg);
+  }
+}
+
+.root :global(.inv-rsvp__thanks) {
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.root :global(.inv-rsvp__summary) {
+  margin-top: 10px;
+  font-style: italic;
+  color: var(--mk-ink-soft);
+}
+
+/* ---------------- Yakun ---------------- */
+
+.root :global(.inv-closing__text) {
+  font-family: var(--inv-font-heading);
+  font-size: 46px;
+  line-height: 1.15;
+  color: var(--mk-wax);
+  text-wrap: balance;
+}
+
+.root :global(.inv-closing__names) {
+  margin-top: 18px;
+  font-family: var(--inv-font-heading);
+  font-size: 40px;
+  line-height: 1.1;
+}
+
+.root :global(.inv-closing__names .inv-hero__amp) {
+  font-size: 0.7em;
+}
+
+.root :global(.inv-closing__hosts) {
+  margin-top: 14px;
+  font-style: italic;
+  font-size: 19px;
+  color: var(--mk-ink-soft);
+}
+
+.root :global(.inv-closing__emblem) {
+  width: 84px;
+  margin: 30px auto 0;
+  opacity: 0.9;
+}
+
+/* ---------------- Boshqaruv ---------------- */
+
+.root :global(.inv-script) {
+  background: rgb(250 245 234 / 0.94);
+  border: 1px solid rgb(165 124 52 / 0.55);
+  box-shadow: 0 4px 12px rgb(20 0 4 / 0.25);
+  color: var(--mk-ink);
+  font-family: var(--inv-font-body);
+}
+
+.root :global(.inv-script button[aria-pressed="true"]) {
+  background: var(--mk-wax);
+  color: #fbf3e4;
+}
+
+.root :global(.inv-music) {
+  border: 1px solid rgb(165 124 52 / 0.55);
+  background: rgb(250 245 234 / 0.94);
+  color: var(--mk-wax);
+  box-shadow: 0 4px 12px rgb(20 0 4 / 0.25);
+}
+
+.root[data-motion="on"] :global(.inv-music[data-playing] svg) {
+  animation: mk-breathe 2.8s ease-in-out infinite;
+}
+
+@keyframes mk-breathe {
+  50% {
+    transform: scale(1.08);
+  }
+}

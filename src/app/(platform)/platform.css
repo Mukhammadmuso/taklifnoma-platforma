@@ -1,0 +1,612 @@
+/*
+ * Platforma interfeysi (kirish, kabinet, muharrir).
+ * Ish ekrani: tez o'qiladigan tizim shrifti, neytral fon, bitta urg'u — Samarqand firuzasi.
+ */
+.p {
+  /* Iliq pergament kanvas, siyoh matn, vino rangli asosiy harakat, binafsha havolalar */
+  --p-bg: #f2f0eb;
+  --p-surface: #ffffff;
+  --p-sunken: #e9e6df;
+  --p-ink: #292827;
+  --p-ink-2: #4d4a47;
+  --p-ink-3: #666666;
+  --p-line: #e3e3e2;
+  --p-line-strong: #c4c0b8;
+  --p-accent: #421d24;
+  --p-accent-hover: #5a2a33;
+  --p-accent-soft: #ece6ff;
+  --p-accent-ink: #ffffff;
+  --p-lilac: #d4c7ff;
+  --p-link: #714cb6;
+  --p-lagoon: #0c4243;
+  --p-danger: #a8262f;
+  --p-danger-soft: #f8e8e7;
+  --p-ok: #2c6b38;
+  --p-ok-soft: #e4efe2;
+  --p-warn: #7a5200;
+  --p-warn-soft: #f6ecd6;
+  --p-radius: 16px;
+  --p-radius-sm: 8px;
+  --p-shadow: none;
+  --p-font: var(--p-font-sans), "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  min-height: 100svh;
+  background: var(--p-bg);
+  color: var(--p-ink);
+  font-family: var(--p-font);
+  font-size: 16px;
+  font-weight: 460;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11", "ss01";
+}
+
+.p *,
+.p *::before,
+.p *::after {
+  box-sizing: border-box;
+}
+
+.p ::selection {
+  background: var(--p-lilac);
+  color: var(--p-ink);
+}
+
+.p {
+  caret-color: var(--p-link);
+  scrollbar-color: #c4c0b8 var(--p-bg);
+}
+
+.p :focus-visible {
+  outline: 2px solid var(--p-link);
+  outline-offset: 2px;
+}
+
+.p h1,
+.p h2,
+.p h3,
+.p p {
+  margin: 0;
+}
+
+.p a {
+  color: var(--p-link);
+  text-decoration: none;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.p a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Sarlavha paneli ---------- */
+.p-top {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 64px;
+  padding: 0 max(16px, calc((100vw - 1200px) / 2));
+  background: rgb(242 240 235 / 0.82);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--p-line);
+}
+
+.p-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.014em;
+  color: var(--p-ink) !important;
+  text-decoration: none !important;
+}
+
+.p-brand svg {
+  color: var(--p-accent);
+}
+
+/* Sarlavhadagi «Boshlash» — nilufar rangli ikkinchi darajali tugma */
+.p-top nav a.p-top__cta {
+  margin-left: 6px;
+  min-height: 40px;
+  padding: 0 16px;
+  background: var(--p-lilac);
+  border: 1px solid var(--p-ink);
+  border-radius: var(--p-radius-sm);
+  color: var(--p-ink);
+  font-weight: 540;
+}
+
+.p-top nav a.p-top__cta:hover {
+  background: #c7b7ff;
+}
+
+.p-top nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.p-top nav a,
+.p-top nav button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--p-radius-sm);
+  background: none;
+  color: var(--p-ink-2);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 460;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.p-top nav a:hover,
+.p-top nav button:hover {
+  background: var(--p-sunken);
+  color: var(--p-ink);
+}
+
+/* ---------- Sahifa ---------- */
+.p-main {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 16px 64px;
+}
+
+.p-narrow {
+  max-width: 440px;
+}
+
+.p-h1 {
+  font-size: 32px;
+  line-height: 1.12;
+  letter-spacing: -0.022em;
+  font-weight: 460;
+  text-wrap: balance;
+}
+
+.p-h2 {
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.014em;
+  font-weight: 540;
+}
+
+.p-lead {
+  margin-top: 8px;
+  color: var(--p-ink-3);
+  max-width: 65ch;
+}
+
+.p-muted {
+  color: var(--p-ink-3);
+}
+
+.p-card {
+  background: var(--p-surface);
+  border: 1px solid var(--p-line);
+  border-radius: var(--p-radius);
+  box-shadow: var(--p-shadow);
+}
+
+/* ---------- Tugmalar ---------- */
+.p-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--p-line-strong);
+  border-radius: var(--p-radius-sm);
+  background: var(--p-surface);
+  color: var(--p-ink) !important;
+  font: inherit;
+  font-weight: 540;
+  font-size: 16px;
+  text-decoration: none !important;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.p-btn:hover {
+  border-color: var(--p-ink-3);
+}
+
+.p-btn:disabled,
+.p-btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.p-btn--primary {
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: var(--p-radius);
+  background: var(--p-accent);
+  border-color: var(--p-accent);
+  color: var(--p-accent-ink) !important;
+  font-weight: 500;
+}
+
+.p-btn--sm.p-btn--primary {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: var(--p-radius-sm);
+}
+
+/* Ikkinchi darajali, rangli: nilufar fon, siyoh chegara */
+.p-btn--lilac {
+  background: var(--p-lilac);
+  border-color: var(--p-ink);
+}
+
+.p-btn--lilac:hover {
+  background: #c7b7ff;
+  border-color: var(--p-ink);
+}
+
+.p-btn--primary:hover {
+  background: var(--p-accent-hover);
+  border-color: var(--p-accent-hover);
+}
+
+.p-btn--ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--p-ink-2) !important;
+}
+
+.p-btn--ghost:hover {
+  background: var(--p-sunken);
+  border-color: transparent;
+}
+
+.p-btn--danger {
+  color: var(--p-danger) !important;
+}
+
+.p-btn--danger:hover {
+  border-color: var(--p-danger);
+  background: var(--p-danger-soft);
+}
+
+.p-btn--danger-solid {
+  background: var(--p-danger);
+  border-color: var(--p-danger);
+  color: #fff !important;
+}
+
+.p-btn--block {
+  width: 100%;
+}
+
+.p-btn--sm {
+  min-height: 40px;
+  padding: 0 12px;
+  font-size: 15px;
+}
+
+.p-btn svg {
+  flex: none;
+}
+
+/* ---------- Forma ---------- */
+.p-field {
+  display: grid;
+  gap: 6px;
+}
+
+.p-field + .p-field,
+.p-field + .p-grid-2,
+.p-grid-2 + .p-field,
+.p-grid-2 + .p-grid-2 {
+  margin-top: 18px;
+}
+
+.p-grid-2 > .p-field {
+  margin-top: 0 !important;
+}
+
+.p-label {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.p-label small {
+  font-weight: 400;
+  color: var(--p-ink-3);
+}
+
+.p-hint {
+  font-size: 14px;
+  color: var(--p-ink-3);
+}
+
+.p-input,
+.p-select,
+.p-textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid var(--p-line-strong);
+  border-radius: 12px;
+  background: var(--p-surface);
+  color: var(--p-ink);
+  font: inherit;
+  font-size: 16px;
+}
+
+.p-textarea {
+  min-height: 110px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.p-input::placeholder,
+.p-textarea::placeholder {
+  color: #847e77;
+}
+
+.p-input:focus,
+.p-select:focus,
+.p-textarea:focus {
+  outline: none;
+  border-color: var(--p-link);
+  box-shadow: 0 0 0 3px rgb(113 76 182 / 0.18);
+}
+
+.p-input[aria-invalid="true"],
+.p-textarea[aria-invalid="true"] {
+  border-color: var(--p-danger);
+}
+
+.p-error {
+  font-size: 14px;
+  color: var(--p-danger);
+}
+
+.p-alert {
+  padding: 12px 14px;
+  border-radius: var(--p-radius-sm);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.p-alert--error {
+  background: var(--p-danger-soft);
+  color: #7d1a20;
+}
+
+.p-alert--warn {
+  background: var(--p-warn-soft);
+  color: #5e3d00;
+}
+
+.p-alert--ok {
+  background: var(--p-ok-soft);
+  color: #1f4d28;
+}
+
+.p-alert--info {
+  background: var(--p-accent-soft);
+  color: #3d2a66;
+}
+
+.p-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.p-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 420px) {
+  .p-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tanlov kartalari (tadbir turi, dizayn, musiqa) */
+.p-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.p-option {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  min-height: 64px;
+  padding: 12px 14px;
+  border: 1px solid var(--p-line-strong);
+  border-radius: var(--p-radius);
+  background: var(--p-surface);
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.p-option:hover {
+  border-color: var(--p-ink-3);
+}
+
+.p-option[aria-pressed="true"],
+.p-option[aria-checked="true"] {
+  border-color: var(--p-ink);
+  box-shadow: 0 0 0 1px var(--p-ink);
+  background: var(--p-accent-soft);
+}
+
+.p-option strong {
+  font-size: 16px;
+}
+
+.p-option span {
+  font-size: 14px;
+  color: var(--p-ink-2);
+}
+
+.p-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--p-sunken);
+  color: var(--p-ink-2);
+  white-space: nowrap;
+}
+
+.p-badge--ok {
+  background: var(--p-ok-soft);
+  color: var(--p-ok);
+}
+
+.p-badge--draft {
+  background: var(--p-warn-soft);
+  color: var(--p-warn);
+}
+
+.p-dialog {
+  width: min(420px, calc(100vw - 32px));
+  padding: 22px;
+  border: 0;
+  border-radius: var(--p-radius);
+  box-shadow: 0 20px 60px rgb(0 0 0 / 0.25);
+  color: var(--p-ink);
+  font-family: var(--p-font);
+}
+
+.p-dialog::backdrop {
+  background: rgb(28 27 25 / 0.45);
+}
+
+.p-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Taklifnoma bo'limlari ---------- */
+.p-tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--p-line);
+  margin-bottom: 22px;
+  scrollbar-width: none;
+}
+
+.p-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  color: var(--p-ink-2) !important;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.p-tab:hover {
+  color: var(--p-ink) !important;
+}
+
+.p-tab[aria-current="page"] {
+  color: var(--p-ink) !important;
+  border-bottom-color: var(--p-ink);
+}
+
+.p-tab__count {
+  min-width: 24px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--p-sunken);
+  color: var(--p-ink-2);
+  font-size: 13px;
+  line-height: 22px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.p-tab[aria-current="page"] .p-tab__count {
+  background: var(--p-lilac);
+  color: var(--p-ink);
+}
+
+.p-badge--info {
+  background: var(--p-accent-soft);
+  color: #5a3a96;
+}
+
+.p-badge--no {
+  background: var(--p-danger-soft);
+  color: var(--p-danger);
+}
+
+/* Tor ekranda sarlavha sig'sin: havolalar ixcham, kerak bo'lsa logotip matni yashiriladi */
+.p-top nav {
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .p-top {
+    gap: 8px;
+  }
+
+  .p-top nav a,
+  .p-top nav button {
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .p-top:has(nav a[href="/kabinet"]) .p-brand__text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}
+
+/* Tugma, yorliq va bo'lim havolalari tagiga chiziq tushmaydi */
+.p :is(.p-tab, .p-badge, .p-brand):hover,
+.p .p-top nav a:hover {
+  text-decoration: none;
+}

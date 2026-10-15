@@ -1,0 +1,237 @@
+/*
+ * Zarhal — kirish ekrani.
+ * Ikki parda (to'q mavzu rangi, oltin panjara, ichki chetida oltin naqsh tasmasi) markazda tutashadi.
+ * «Taklifnomani ochish» bosilganda matn so'nadi, pardalar ikki tomonga suriladi, oltin zarralar sochiladi.
+ */
+
+.stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  transition: opacity 0.4s ease;
+}
+
+.curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  /* Bitta parda surati ikki nusxada: har biri o'z yarmini ko'rsatadi (200% kenglik + chap/o'ng joylashuv) */
+  background: url("/templates/zarhal/curtain.webp") center / 200% 100% no-repeat;
+  transition: transform 1.25s cubic-bezier(0.7, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.left {
+  left: 0;
+  background-position: left center;
+}
+
+.right {
+  right: 0;
+  background-position: right center;
+}
+
+/* Parda surati faqat standart (zumrad) mavzuga mos keladi; boshqa mavzularda naqshli fon qaytadi */
+:global([data-theme="lojuvard"]) .curtain,
+:global([data-theme="yoqut"]) .curtain,
+:global([data-theme="tun"]) .curtain {
+  background: var(--zh-lattice), radial-gradient(120% 70% at 50% 40%, var(--zh-deep), var(--zh-deep-2));
+}
+
+/* Pardaning ichki cheti: ikki oltin chiziq va nuqtalar tasmasi */
+.curtain::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  background:
+    radial-gradient(circle, var(--zh-gold-light) 1.6px, transparent 2px) center top / 14px 22px repeat-y,
+    linear-gradient(var(--zh-gold), var(--zh-gold)) 2px 0 / 1px 100% no-repeat,
+    linear-gradient(var(--zh-gold), var(--zh-gold)) 11px 0 / 1px 100% no-repeat;
+  opacity: 0.85;
+}
+
+.left::after {
+  right: 0;
+}
+
+.right::after {
+  left: 0;
+}
+
+/* ---------- Markaziy matn ---------- */
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(86vw, 400px);
+  padding: 40px 22px 34px;
+  text-align: center;
+  color: #f6efdf;
+  /* Arkasimon lavha: pardalar choki matn orqasida qoladi */
+  background: radial-gradient(120% 70% at 50% 0%, rgb(255 255 255 / 0.05), transparent 60%), var(--zh-deep-2);
+  border: 1px solid var(--zh-gold);
+  border-radius: 999px 999px 10px 10px / 200px 200px 10px 10px;
+  box-shadow:
+    inset 0 0 0 5px var(--zh-deep-2),
+    inset 0 0 0 6px rgb(226 198 127 / 0.45),
+    0 24px 60px rgb(0 0 0 / 0.35);
+  transition:
+    opacity 0.3s ease,
+    transform 0.4s ease;
+}
+
+.star {
+  width: 40px;
+  height: 40px;
+  color: var(--zh-gold-light);
+}
+
+.bismillah {
+  margin: 18px 0 0;
+  font-family: var(--zh-display), serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(24px, 6.4vw, 30px);
+  line-height: 1.2;
+  color: var(--zh-gold-light);
+}
+
+.rule {
+  display: block;
+  width: 120px;
+  height: 1px;
+  margin: 22px 0;
+  background: linear-gradient(90deg, transparent, var(--zh-gold), transparent);
+}
+
+.greeting {
+  margin: 0;
+  font-family: var(--zh-display), serif;
+  font-weight: 600;
+  font-size: clamp(30px, 8.4vw, 40px);
+  line-height: 1.1;
+  color: #fffaf0;
+  overflow-wrap: anywhere;
+}
+
+.phrase {
+  margin: 14px 0 0;
+  font-family: var(--zh-display), serif;
+  font-size: 20px;
+  line-height: 1.45;
+  color: rgb(246 239 223 / 0.86);
+  text-wrap: balance;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  margin-top: 30px;
+  padding: 0 26px;
+  border: 1px solid var(--zh-gold-light);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.04);
+  color: var(--zh-gold-light);
+  font-family: var(--zh-label), sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.btn:hover {
+  background: var(--zh-gold-light);
+  color: var(--zh-deep-2);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--zh-gold-light);
+  outline-offset: 4px;
+}
+
+.stage[data-step="idle"]:not([data-reduced]) .btn {
+  animation: glow 2.8s ease-in-out 1.2s infinite;
+}
+
+@keyframes glow {
+  50% {
+    box-shadow: 0 0 0 6px rgb(226 198 127 / 0.12);
+  }
+}
+
+/* ---------- Oltin zarralar ---------- */
+.sparks {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+}
+
+.sparks i {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  margin: -3px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff6d8, var(--zh-gold-light) 45%, transparent 70%);
+  opacity: 0;
+}
+
+/* ================= Bosqichlar ================= */
+
+.stage:not([data-step="idle"]) .content {
+  opacity: 0;
+  transform: scale(0.97);
+  pointer-events: none;
+}
+
+.stage[data-step="part"] .left {
+  transform: translateX(-102%);
+}
+
+.stage[data-step="part"] .right {
+  transform: translateX(102%);
+}
+
+.stage[data-step="part"] .sparks i {
+  animation: spark 1.3s cubic-bezier(0.15, 0.7, 0.3, 1) var(--d) both;
+}
+
+@keyframes spark {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), calc(var(--y) + 60px)) scale(var(--s));
+  }
+}
+
+/* Harakatsiz rejim: faqat yumshoq so'nish */
+.stage[data-reduced][data-step="part"] {
+  opacity: 0;
+}
+
+.stage[data-reduced] * {
+  animation: none !important;
+  transition: none !important;
+}

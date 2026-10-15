@@ -1,0 +1,316 @@
+/* Mehmonlar va javoblar sahifalari — ish ekrani: tez ko'z yugurtiriladigan ro'yxat */
+
+.layout {
+  display: grid;
+  gap: 18px;
+  align-items: start;
+}
+
+@media (min-width: 960px) {
+  .layout {
+    grid-template-columns: 380px 1fr;
+  }
+
+  .side {
+    position: sticky;
+    top: 76px;
+  }
+}
+
+.side {
+  display: grid;
+  gap: 14px;
+}
+
+/* Telefonda ro'yxat bo'lsa, avval ro'yxat — qo'shish va xabar pastda */
+@media (max-width: 959px) {
+  .layout[data-has-guests] .main {
+    order: -1;
+  }
+}
+
+.card {
+  padding: 18px;
+}
+
+.previewLabel {
+  margin-top: 16px !important;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--p-ink-3);
+}
+
+.preview {
+  margin-top: 6px !important;
+  padding: 12px 14px;
+  border-radius: var(--p-radius-sm);
+  background: var(--p-sunken);
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.main {
+  min-width: 0;
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 18px;
+  margin-bottom: 12px;
+  color: var(--p-ink-2);
+}
+
+.summary strong {
+  color: var(--p-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.toolbar :global(.p-select) {
+  width: auto;
+}
+
+@media (max-width: 480px) {
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar :global(.p-select) {
+    width: 100%;
+  }
+}
+
+.empty {
+  padding: 22px;
+  display: grid;
+  gap: 8px;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.item {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  background: var(--p-surface);
+  border: 1px solid var(--p-line);
+  border-radius: var(--p-radius);
+}
+
+.itemHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 12px;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 17px;
+  overflow-wrap: anywhere;
+}
+
+.rename {
+  display: flex;
+  flex: 1 1 260px;
+  gap: 6px;
+}
+
+.rename :global(.p-input) {
+  min-height: 40px;
+  padding: 6px 10px;
+}
+
+.link {
+  justify-self: start;
+  max-width: 100%;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--p-ink-3);
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  overflow-wrap: anywhere;
+  cursor: copy;
+}
+
+.link:hover {
+  color: var(--p-accent);
+  text-decoration: underline;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+@media (max-width: 480px) {
+  .spacer {
+    display: none;
+  }
+}
+
+/* Telefonda ro'yxat tepada — qo'shish formasiga tez o'tish */
+.jump {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+@media (min-width: 960px) {
+  .jump {
+    display: none;
+  }
+}
+
+/* ---------- Javoblar ---------- */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.stat {
+  padding: 14px 16px;
+}
+
+.statNum {
+  display: block;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.statLabel {
+  display: block;
+  margin-top: 2px;
+  font-size: 15px;
+  color: var(--p-ink-2);
+}
+
+.statPrimary {
+  background: var(--p-accent);
+  border-color: var(--p-accent);
+  color: #fff;
+}
+
+.statPrimary .statLabel {
+  color: rgb(255 255 255 / 0.85);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--p-surface);
+  border: 1px solid var(--p-line);
+  border-radius: var(--p-radius);
+  overflow: hidden;
+  font-size: 15px;
+}
+
+.table th {
+  padding: 10px 12px;
+  background: var(--p-sunken);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  color: var(--p-ink-2);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 12px;
+  border-top: 1px solid var(--p-line);
+  vertical-align: top;
+}
+
+.num {
+  text-align: right !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.wish {
+  max-width: 34ch;
+  color: var(--p-ink-2);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.muted {
+  color: var(--p-ink-3);
+  font-size: 14px;
+}
+
+/* Telefonda jadval kartochkalarga aylanadi */
+@media (max-width: 720px) {
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+
+  .table {
+    border: 0;
+    background: none;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tr {
+    margin-bottom: 8px;
+    padding: 12px 14px;
+    background: var(--p-surface);
+    border: 1px solid var(--p-line);
+    border-radius: var(--p-radius);
+  }
+
+  .table td {
+    padding: 2px 0;
+    border: 0;
+  }
+
+  .table td[data-label]::before {
+    content: attr(data-label) ": ";
+    color: var(--p-ink-3);
+  }
+
+  .num {
+    text-align: left !important;
+  }
+
+  .wish {
+    max-width: none;
+  }
+}

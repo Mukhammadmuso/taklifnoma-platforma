@@ -1,0 +1,321 @@
+/*
+ * Non — ushatish sahnasi.
+ * Sahna shaffof: non dasturxonning (sahifa varag'ining) ustida yotadi.
+ * Ushatilgach yarmlari ikki tomonga ketadi va ostidagi bosh ekran ochiladi.
+ */
+
+.stage {
+  --size: min(80vw, 420px, 52svh);
+  position: absolute;
+  inset: 0;
+  background: url("/templates/non/hero.webp") center / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 3.4svh, 34px);
+  padding: 64px 16px max(28px, env(safe-area-inset-bottom));
+  overflow: hidden;
+  transition: opacity 0.5s ease;
+}
+
+/* ---------- Kimga ---------- */
+.address {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  max-width: 420px;
+  text-align: center;
+  color: var(--nn-ink);
+  transition:
+    opacity 0.35s ease,
+    transform 0.5s ease;
+}
+
+.event {
+  font-family: var(--nn-sans), sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--nn-crust);
+  margin-bottom: 6px;
+}
+
+.to {
+  font-family: var(--nn-serif), serif;
+  font-style: italic;
+  font-size: clamp(22px, 6vw, 28px);
+  line-height: 1.2;
+  color: var(--nn-ink-soft);
+}
+
+.name {
+  font-family: var(--nn-serif), serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(32px, 9vw, 44px);
+  line-height: 1.1;
+  color: var(--nn-ink);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Non ---------- */
+.loaf {
+  position: relative;
+  flex: none;
+  width: var(--size);
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  transition: transform 0.16s ease;
+}
+
+.loaf:focus-visible {
+  outline: 2px solid var(--nn-crust);
+  outline-offset: 10px;
+}
+
+.shadow {
+  position: absolute;
+  inset: 6% 3% 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(74 34 8 / 0.42), rgb(74 34 8 / 0.18) 70%, transparent);
+  transform: translateY(5%);
+  filter: blur(6px);
+  transition: opacity 0.4s ease;
+}
+
+.whole,
+.half,
+.crack,
+.crumbs,
+.steam {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.left {
+  transform-origin: 30% 62%;
+}
+
+.stage:is([data-step="idle"], [data-step="press"]) .half,
+.stage:not([data-step="idle"]):not([data-step="press"]) .whole {
+  visibility: hidden;
+}
+
+.right {
+  transform-origin: 70% 62%;
+}
+
+.whole,
+.half,
+.crumbs {
+  will-change: transform;
+}
+
+.half {
+  transition:
+    transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.5s ease;
+}
+
+.torn {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.crack path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+
+.crumbs path {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Bug' faqat ushatilganda ko'tariladi */
+.steam {
+  opacity: 0;
+  transform: translateY(-6%);
+}
+
+.steam path {
+  stroke-dasharray: 0.45 1;
+  stroke-dashoffset: 0;
+}
+
+/* ---------- Ko'rsatma ---------- */
+.hint {
+  margin: 0;
+  font-family: var(--nn-sans), sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--nn-crust);
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+.stage[data-step="idle"]:not([data-reduced]) .hint {
+  animation: hint 2.8s ease-in-out 1.2s infinite;
+}
+
+@keyframes hint {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* ================= Bosqichlar ================= */
+
+.stage:not([data-step="idle"]) .loaf {
+  cursor: default;
+}
+
+.stage:not([data-step="idle"]) .address,
+.stage:not([data-step="idle"]) .hint {
+  animation: none;
+  opacity: 0;
+}
+
+.stage:not([data-step="idle"]) .address {
+  transform: translateY(-12px);
+}
+
+.stage[data-step="press"] .loaf {
+  transform: scale(0.97);
+}
+
+/* Yorilish: chiziq tepadan pastga yuguradi, non biroz titraydi */
+.stage[data-step="crack"] .crack path {
+  opacity: 0.85;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.36s cubic-bezier(0.5, 0, 0.3, 1);
+}
+
+.stage[data-step="crack"] .loaf {
+  animation: shake 0.36s ease-in-out;
+}
+
+@keyframes shake {
+  25% {
+    transform: rotate(-0.8deg);
+  }
+  60% {
+    transform: rotate(0.7deg);
+  }
+}
+
+/* Ushatish: ikki yarm ajraladi, ichidan bug' chiqadi, ushoqlar sochiladi */
+.stage:is([data-step="split"], [data-step="away"]) .torn {
+  opacity: 1;
+}
+
+.stage:is([data-step="split"], [data-step="away"]) .shadow {
+  opacity: 0;
+}
+
+.stage[data-step="split"] .left {
+  transform: translate(-9%, 1.5%) rotate(-5deg);
+}
+
+.stage[data-step="split"] .right {
+  transform: translate(9%, 2.5%) rotate(6deg);
+}
+
+.stage:is([data-step="split"], [data-step="away"]) .crumbs path {
+  animation: crumb 1s cubic-bezier(0.2, 0.6, 0.4, 1) var(--d) both;
+}
+
+@keyframes crumb {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) rotate(var(--r));
+  }
+}
+
+.stage:is([data-step="split"], [data-step="away"]) .steam {
+  opacity: 0.75;
+  transform: translateY(-18%);
+  transition:
+    opacity 0.3s ease,
+    transform 1.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.stage:is([data-step="split"], [data-step="away"]) .steam path {
+  animation: steam-burst 1.5s ease-out both;
+}
+
+.stage:is([data-step="split"], [data-step="away"]) .steam path:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+@keyframes steam-burst {
+  0% {
+    stroke-dashoffset: 0.45;
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -0.9;
+    opacity: 0;
+  }
+}
+
+/* Yarmlar dasturxon chetiga suriladi — ostidan taklifnoma ochiladi */
+.stage[data-step="away"] .left {
+  transform: translate(-82%, 16%) rotate(-24deg);
+  opacity: 0;
+  transition:
+    transform 1s cubic-bezier(0.55, 0, 0.6, 1),
+    opacity 0.5s ease 0.5s;
+}
+
+.stage[data-step="away"] .right {
+  transform: translate(82%, 20%) rotate(26deg);
+  opacity: 0;
+  transition:
+    transform 1s cubic-bezier(0.55, 0, 0.6, 1),
+    opacity 0.5s ease 0.5s;
+}
+
+.stage[data-step="away"] .crack path {
+  opacity: 0;
+}
+
+/* Harakatsiz rejim: faqat yumshoq so'nish */
+.stage[data-reduced][data-step="away"] {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.stage[data-reduced] * {
+  animation: none !important;
+}
+
+.stage[data-reduced][data-step="away"] * {
+  transition: none !important;
+  transform: none !important;
+}

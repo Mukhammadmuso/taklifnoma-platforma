@@ -1,0 +1,368 @@
+/* Maktub — konvert ochilish sahnasi */
+
+.stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 3.5svh, 32px);
+  padding: 72px 16px max(28px, env(safe-area-inset-bottom));
+  overflow: hidden;
+  background: var(--mk-velvet);
+  transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.light {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(42% 34% at 50% 46%, rgb(255 196 140 / 0.16), transparent 70%);
+  pointer-events: none;
+  opacity: 0.7;
+  transition:
+    opacity 0.6s ease,
+    transform 1.2s ease;
+}
+
+.envWrap {
+  position: relative;
+  width: min(84vw, 400px, calc((100svh - 220px) * 5 / 7));
+  aspect-ratio: 5 / 7;
+  perspective: 1600px;
+  transition:
+    transform 0.9s cubic-bezier(0.65, 0, 0.35, 1),
+    opacity 0.7s ease;
+}
+
+.env {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  container-type: inline-size;
+  cursor: pointer;
+}
+
+.back,
+.pocket {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.back {
+  z-index: 0;
+  border-radius: 3px;
+  box-shadow:
+    0 26px 44px rgb(18 0 4 / 0.55),
+    0 4px 10px rgb(18 0 4 / 0.35);
+}
+
+.pocket {
+  z-index: 2;
+  pointer-events: none;
+  transition:
+    opacity 0.6s ease,
+    transform 0.8s cubic-bezier(0.55, 0, 0.75, 0.3);
+}
+
+/* ---------- Xat ---------- */
+/* Xat — bosh ekran nusxasi: asl o'lchamda chiziladi, transform bilan konvertga sig'diriladi */
+.letter {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: var(--lw, 100vw);
+  height: 100svh;
+  transform-origin: 0 0;
+  transform: translate(var(--x), var(--y)) scale(var(--s));
+  clip-path: inset(0 0 var(--clip-idle) 0);
+  visibility: hidden;
+  box-shadow: 0 -10px 30px rgb(40 10 0 / 0.22);
+  transition:
+    transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1),
+    clip-path 0.95s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.6s ease;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.letter[data-ready] {
+  visibility: visible;
+}
+
+.letterSheet {
+  height: 100%;
+  overflow: hidden;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/* ---------- Manzil (kimga) ---------- */
+.address {
+  position: absolute;
+  z-index: 3;
+  left: 10%;
+  right: 10%;
+  top: 71%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #3a2a20;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.addressTo {
+  font-family: var(--mk-label), serif;
+  font-size: max(16px, 4.4cqi);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #6b4a2c;
+}
+
+.addressName {
+  font-family: var(--inv-font-heading);
+  font-style: var(--mk-address-style, normal);
+  font-size: 11cqi;
+  line-height: 1.15;
+  color: #2b1b16;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Qopqoq ---------- */
+.flap {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: calc(100% * 380 / 700);
+  transform-origin: 50% 0;
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.6, 0, 0.25, 1);
+  pointer-events: none;
+}
+
+.flapFront,
+.flapBack {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flapBack {
+  transform: rotateY(180deg);
+}
+
+/* ---------- Muhr ---------- */
+.seal {
+  position: absolute;
+  z-index: 6;
+  left: 35%;
+  top: 40.6%;
+  width: 30%;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: transform 0.14s ease;
+}
+
+.seal:focus-visible {
+  outline: 2px solid #d9bc78;
+  outline-offset: 6px;
+}
+
+.sealSvg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.pulse {
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  border: 1.5px solid #d9bc78;
+  opacity: 0;
+  animation: pulse 2.6s cubic-bezier(0.2, 0.7, 0.3, 1) 0.8s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+.seal :global(.mk-seal__half) {
+  transform-box: fill-box;
+  transform-origin: 50% 90%;
+  transition:
+    transform 0.38s cubic-bezier(0.3, 0.7, 0.4, 1),
+    opacity 0.5s ease;
+}
+
+.seal :global(.mk-seal__crack) {
+  opacity: 0;
+  transition: opacity 0.16s ease;
+}
+
+.seal :global(.mk-seal__shadow) {
+  transition: opacity 0.3s ease;
+}
+
+/* ---------- Ko'rsatma ---------- */
+.hint {
+  position: relative;
+  margin: 0;
+  font-family: var(--mk-label), serif;
+  font-size: 16px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #d9bc78;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+/* ================= Bosqichlar ================= */
+
+.stage[data-step="press"] .seal {
+  transform: scale(0.93);
+}
+
+.stage:not([data-step="idle"]) .pulse,
+.stage:not([data-step="idle"]) .hint {
+  animation: none;
+  opacity: 0;
+}
+
+.stage:not([data-step="idle"]) .env {
+  cursor: default;
+}
+
+.stage:is([data-step="crack"], [data-step="open"], [data-step="rise"], [data-step="out"]) .light {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.stage[data-step="crack"] .seal :global(.mk-seal__crack) {
+  opacity: 1;
+}
+
+.stage[data-step="crack"] .seal :global(.mk-seal__half--l) {
+  transform: translate(-5px, 2px) rotate(-7deg);
+}
+
+.stage[data-step="crack"] .seal :global(.mk-seal__half--r) {
+  transform: translate(6px, 3px) rotate(6deg);
+}
+
+.stage:is([data-step="open"], [data-step="rise"], [data-step="out"]) .seal {
+  pointer-events: none;
+}
+
+.stage:is([data-step="open"], [data-step="rise"], [data-step="out"]) .seal :global(.mk-seal__half--l) {
+  transform: translate(-60px, 170px) rotate(-42deg);
+  opacity: 0;
+  transition:
+    transform 0.7s cubic-bezier(0.5, 0, 0.9, 0.6),
+    opacity 0.6s ease 0.1s;
+}
+
+.stage:is([data-step="open"], [data-step="rise"], [data-step="out"]) .seal :global(.mk-seal__half--r) {
+  transform: translate(64px, 190px) rotate(36deg);
+  opacity: 0;
+  transition:
+    transform 0.75s cubic-bezier(0.5, 0, 0.9, 0.6),
+    opacity 0.6s ease 0.1s;
+}
+
+.stage:is([data-step="open"], [data-step="rise"], [data-step="out"]) .seal :global(.mk-seal__shadow),
+.stage:is([data-step="open"], [data-step="rise"], [data-step="out"]) .seal :global(.mk-seal__crack) {
+  opacity: 0;
+}
+
+.stage:is([data-step="open"], [data-step="rise"], [data-step="out"]) .flap {
+  transform: rotateX(180deg);
+}
+
+.stage:is([data-step="open"], [data-step="rise"], [data-step="out"]) .envWrap {
+  transform: translateY(27%);
+}
+
+.stage:is([data-step="open"], [data-step="rise"], [data-step="out"]) .address {
+  opacity: 0;
+}
+
+.stage:is([data-step="rise"], [data-step="out"]) .flap {
+  z-index: 0;
+}
+
+.stage[data-step="rise"] .letter {
+  transform: translate(var(--x), calc(var(--y) - var(--rise))) scale(var(--s));
+  clip-path: inset(0 0 var(--clip-rise) 0);
+}
+
+.stage[data-step="out"] .light {
+  opacity: 0;
+}
+
+.stage[data-step="out"] .letter {
+  z-index: 7;
+  transform: translate(var(--tx), var(--ty)) scale(1);
+  clip-path: inset(0 0 0 0);
+  box-shadow: 0 0 0 rgb(40 10 0 / 0);
+  transition:
+    transform 0.85s cubic-bezier(0.65, 0, 0.35, 1),
+    clip-path 0.45s ease,
+    box-shadow 0.85s ease;
+}
+
+.stage[data-step="out"] .back,
+.stage[data-step="out"] .pocket,
+.stage[data-step="out"] .flap {
+  opacity: 0;
+  transform: translateY(40%);
+  transition:
+    opacity 0.55s ease,
+    transform 0.7s cubic-bezier(0.55, 0, 0.75, 0.3);
+}
+
+.stage[data-step="out"] .flap {
+  transform: translateY(40%) rotateX(180deg);
+}
+
+/* Harakatsiz rejim: faqat yumshoq so'nish */
+.stage[data-reduced] .pulse {
+  animation: none;
+  opacity: 0.6;
+}
+
+.stage[data-reduced][data-step="out"] {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  transition-delay: 0s;
+}
+
+.stage[data-reduced][data-step="out"] * {
+  transition: none !important;
+  transform: none !important;
+}

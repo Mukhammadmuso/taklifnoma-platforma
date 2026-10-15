@@ -1,0 +1,226 @@
+/*
+ * Chinor — barglar sahnasi.
+ * Ekranni chinor barglari qoplaydi, o'rtada yillar halqali yog'och kesigi.
+ * Bosilganda barglar aylanib-tebranib to'kiladi, ostidagi sahifa ochiladi.
+ */
+
+.stage {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  transition: opacity 0.5s ease;
+}
+
+.stage:focus-visible {
+  outline: none;
+}
+
+.stage:focus-visible .hint {
+  outline: 2px solid #fbf7ec;
+  outline-offset: 4px;
+}
+
+/* ---------- Barglar ---------- */
+.canopy {
+  position: absolute;
+  inset: -6%;
+}
+
+/* Barglar ortidagi soya — to'kilganda asta yo'qoladi */
+.canopy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(70% 60% at 50% 45%, #3f5a2c, #233420 70%, #1a2617);
+  transition: opacity 0.8s ease 0.35s;
+}
+
+.leaf {
+  position: absolute;
+  display: block;
+  /* Telefonda ekran eniga nisbatan, katta ekranda cheklangan */
+  width: calc(var(--s) * min(1vmin, 5.4px));
+  height: auto;
+  aspect-ratio: 1;
+  overflow: visible;
+  transform: translate(-50%, -50%) rotate(var(--r0));
+  will-change: transform;
+}
+
+.leaf[data-z="1"] {
+  z-index: 1;
+}
+
+.leaf[data-z="2"] {
+  z-index: 2;
+}
+
+/* Shabada: barglar sekin tebranadi */
+.stage[data-step="idle"]:not([data-reduced]) .leaf:nth-child(2n) {
+  animation: breeze 4.8s ease-in-out var(--bd) infinite alternate;
+}
+
+@keyframes breeze {
+  to {
+    transform: translate(-50%, -50%) rotate(calc(var(--r0) + 4deg));
+  }
+}
+
+/* ---------- O'rta: yog'och kesigi ---------- */
+.center {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 16px;
+  pointer-events: none;
+  transition:
+    opacity 0.45s ease,
+    transform 0.6s cubic-bezier(0.5, 0, 0.75, 0.3);
+}
+
+.disc {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(84vw, 380px, 52svh);
+  aspect-ratio: 1;
+  filter: drop-shadow(0 18px 24px rgb(10 14 4 / 0.55));
+}
+
+.discSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.address {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 62%;
+  text-align: center;
+  color: var(--ch-ink);
+}
+
+.event {
+  font-family: var(--ch-caps), sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.12em;
+  color: var(--ch-green);
+  margin-bottom: 4px;
+}
+
+.to {
+  font-family: var(--ch-serif), serif;
+  font-style: italic;
+  font-size: clamp(20px, 5.6vw, 26px);
+  line-height: 1.25;
+  color: #4a3a22;
+}
+
+.name {
+  font-family: var(--ch-serif), serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(26px, 7.4vw, 38px);
+  line-height: 1.1;
+  color: var(--ch-ink);
+  overflow-wrap: anywhere;
+}
+
+.hint {
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: rgb(251 247 236 / 0.94);
+  box-shadow: 0 6px 16px rgb(10 14 4 / 0.35);
+  font-family: var(--ch-caps), sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.1em;
+  color: var(--ch-green);
+}
+
+.stage[data-step="idle"]:not([data-reduced]) .hint {
+  animation: hint 2.8s ease-in-out 1.2s infinite;
+}
+
+@keyframes hint {
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+/* ================= Bosqichlar ================= */
+
+.stage:not([data-step="idle"]) {
+  cursor: default;
+}
+
+.stage:not([data-step="idle"]) .hint {
+  animation: none;
+}
+
+/* Bosilganda barglar shitirlaydi */
+.stage[data-step="rustle"] .leaf {
+  animation: rustle 0.18s ease-in-out;
+}
+
+@keyframes rustle {
+  50% {
+    transform: translate(-50%, -52%) rotate(calc(var(--r0) - 5deg));
+  }
+}
+
+.stage[data-step="fall"] .center {
+  opacity: 0;
+  transform: translateY(22px) scale(0.94);
+}
+
+.stage[data-step="fall"] .canopy::before {
+  opacity: 0;
+}
+
+.stage[data-step="fall"] .leaf {
+  animation: fall var(--du) cubic-bezier(0.4, 0.05, 0.7, 0.6) var(--dl) both;
+}
+
+@keyframes fall {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--r0));
+  }
+  30% {
+    transform: translate(calc(-50% + var(--sx)), calc(-50% + 16vh)) rotate(calc(var(--r0) + var(--spin) * 0.3)) scaleX(0.82);
+  }
+  65% {
+    transform: translate(calc(-50% - var(--sx) * 0.7), calc(-50% + 58vh)) rotate(calc(var(--r0) + var(--spin) * 0.68)) scaleX(1);
+  }
+  100% {
+    transform: translate(calc(-50% + var(--sx) * 0.4), calc(-50% + 125vh)) rotate(calc(var(--r0) + var(--spin))) scaleX(0.86);
+  }
+}
+
+/* Harakatsiz rejim: faqat yumshoq so'nish */
+.stage[data-reduced][data-step="fall"] {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.stage[data-reduced] * {
+  animation: none !important;
+}

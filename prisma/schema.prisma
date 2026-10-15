@@ -1,0 +1,158 @@
+// Ma'lumotlar modeli. Lokal: SQLite. Prod: provider = "postgresql" ga almashtiriladi.
+// Enum o'rniga String ishlatilgan (SQLite/Postgres ikkalasida bir xil ishlashi uchun);
+// ruxsat etilgan qiymatlar src/lib/schema.ts dagi zod sxemalarida tekshiriladi.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Auth (Auth.js / NextAuth jadvallari, Faza 2 da ulanadi) ----------
+
+model User {
+  id            String       @id @default(cuid())
+  name          String?
+  email         String?      @unique
+  emailVerified DateTime?
+  image         String?
+  role          String       @default("user") // "user" | "admin"
+  /// Ro'yxatdan o'tmasdan ochilgan hisobga boshqa qurilmadan qaytish uchun maxfiy kalit (/kalit/{accessKey})
+  accessKey     String?      @unique
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  invitations   Invitation[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ---------- Taklifnoma ----------
+
+model Invitation {
+  id              String    @id @default(cuid())
+  ownerId         String
+  owner           User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  slug            String    @unique
+  status          String    @default("draft") // "draft" | "published"
+  isPaid          Boolean   @default(false)
+  templateId      String
+  eventType       String // "nikoh" | "fotiha" | "sunnat" | "yubiley" | "tugilgan_kun" | "boshqa"
+  scriptMode      String    @default("lat") // "lat" | "cyr"
+
+  name1           String
+  name2           String?
+  subtitle        String? // taklif matni
+  hosts           String? // imzo: "Karimovlar va Rahimovlar oilalari" (ixtiyoriy)
+  parents1        String? // kuyovning ota-onasi (nikoh/fotiha) — imzo ikki ustunda
+  parents2        String? // kelinning ota-onasi
+  quote           String? // shior qatori: "Ikki qalb — bir taqdir"
+  eventDateTime   DateTime // UTC'da saqlanadi, Asia/Tashkent bo'yicha ko'rsatiladi
+
+  venueName       String?
+  address         String?
+  venueHall       String? // "Katta zal"
+  landmark        String? // "Mo'ljal: Chilonzor metro bekati yonida"
+  googleMapsUrl   String?
+  yandexMapsUrl   String?
+
+  program         Json      @default("[]") // [{ time, title, description }]
+  notes           Json      @default("[]") // ["Dress code: ...", ...]
+
+  giftTitle       String?
+  giftText        String?
+
+  telegramUsername String?
+  phone           String?
+
+  mainPhotoUrl    String?
+  venuePhotoUrl   String?
+  musicId         String?
+  rsvpEnabled     Boolean   @default(true)
+  gallery         Json      @default("[]") // ["/api/files/..."] — «Baxtli lahzalar», 12 tagacha
+  theme           String? // dizaynning rang mavzusi (dizayn qo'llasa)
+  bismillah       Boolean   @default(true) // kirish ekranida «Bismillahir rohmanir rohiym»
+  guestMessage    String? // mehmonlarga yuboriladigan xabar shabloni: {ism}, {havola}
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  guests          Guest[]
+  rsvps           Rsvp[]
+
+  @@index([ownerId])
+}
+
+model Guest {
+  id           String     @id @default(cuid())
+  invitationId String
+  invitation   Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+  name         String
+  token        String     @unique
+  openedAt     DateTime?
+  respondedAt  DateTime?
+  createdAt    DateTime   @default(now())
+  rsvp         Rsvp?
+
+  @@index([invitationId])
+}
+
+model Rsvp {
+  id           String     @id @default(cuid())
+  invitationId String
+  invitation   Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+  guestId      String?    @unique // shaxsiy havoladan kelgan bo'lsa, bitta mehmon = bitta javob
+  guest        Guest?     @relation(fields: [guestId], references: [id], onDelete: SetNull)
+  name         String
+  attending    Boolean
+  count        Int        @default(1) // 1..10
+  wish         String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@index([invitationId])
+}
+
+/// Dizaynni admin vaqtincha yashirishi mumkin (galereya va yangi taklifnomada ko'rinmaydi).
+/// Yozuv bo'lmasa — dizayn yoqilgan. Mavjud taklifnomalar o'chirilgan dizaynda ham ishlayveradi.
+model TemplateSetting {
+  id        String   @id // templates/registry dagi id
+  enabled   Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+}

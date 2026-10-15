@@ -1,0 +1,92 @@
+/* Namuna sahifasi paneli — dizayndan mustaqil, neytral; taklifnoma ichidagi boshqaruvni yuqoriroq suradi */
+.sample-cta {
+  position: fixed;
+  z-index: 70;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 64px;
+  padding: 8px max(12px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  background: rgb(22 20 18 / 0.92);
+  color: #fff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+@supports (backdrop-filter: blur(8px)) {
+  .sample-cta {
+    background: rgb(22 20 18 / 0.78);
+    backdrop-filter: blur(10px);
+  }
+}
+
+.sample-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  text-decoration: none;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.sample-cta__back {
+  padding: 0 10px;
+  color: rgb(255 255 255 / 0.85);
+}
+
+.sample-cta__back:hover {
+  color: #fff;
+}
+
+.sample-cta__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgb(255 255 255 / 0.7);
+}
+
+.sample-cta__go {
+  padding: 0 18px;
+  background: #fff;
+  color: #161412;
+  font-weight: 700;
+}
+
+.sample-cta__go:hover {
+  background: #f1efe9;
+}
+
+.sample-cta a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@media (max-width: 420px) {
+  .sample-cta__name {
+    display: none;
+  }
+
+  .sample-cta__go {
+    margin-left: auto;
+  }
+}
+
+/* Ochilish sahnasi va taklifnoma boshqaruvi panel ostida qolmasin */
+body:has(.sample-cta) .inv-opening {
+  bottom: calc(64px + env(safe-area-inset-bottom));
+}
+
+body:has(.sample-cta) .inv[data-phase="open"] .inv-controls {
+  bottom: calc(76px + env(safe-area-inset-bottom));
+}
+
+body:has(.sample-cta) .inv-ground {
+  padding-bottom: 64px;
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <!-- Maktub dizayni preview: baxmal fondagi muhrlangan konvert (original chizma) -->
+  <defs>
+    <radialGradient id="v" cx=".5" cy="0" r="1.1"><stop offset="0" stop-color="#5b1424"/><stop offset=".55" stop-color="#3a0a14"/><stop offset="1" stop-color="#22050b"/></radialGradient>
+    <linearGradient id="l" x1="0" x2="1"><stop offset="0" stop-color="#eadfcb"/><stop offset="1" stop-color="#f5eddf"/></linearGradient>
+    <linearGradient id="r" x1="1" x2="0"><stop offset="0" stop-color="#e3d6bf"/><stop offset="1" stop-color="#efe5d3"/></linearGradient>
+    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8f1e4"/><stop offset="1" stop-color="#ece1ce"/></linearGradient>
+    <radialGradient id="w" cx=".4" cy=".36" r=".75"><stop offset="0" stop-color="#a82c40"/><stop offset=".5" stop-color="#7a1426"/><stop offset="1" stop-color="#470914"/></radialGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#v)"/>
+  <g transform="translate(100 120)">
+    <rect width="400" height="560" fill="#5a0f1d"/>
+    <path d="M0 0L192 258Q200 267 197 282L0 560Z" fill="url(#l)"/>
+    <path d="M400 0L208 258Q200 267 203 282L400 560Z" fill="url(#r)"/>
+    <path d="M0 560L187 290Q200 274 213 290L400 560Z" fill="url(#b)"/>
+    <path d="M32 550L200 307L368 550" fill="none" stroke="#a57c34" stroke-width="1.2"/>
+    <path d="M0 0H400L213 282Q200 299 187 282Z" fill="#f2eadb" stroke="#d8c8ac"/>
+    <path d="M24 10H376L205 267Q200 274 195 267Z" fill="none" stroke="#a57c34" stroke-width="1.2"/>
+    <circle cx="200" cy="286" r="54" fill="url(#w)"/>
+    <circle cx="200" cy="286" r="38" fill="#5e0d1b" stroke="#8e2a3c" stroke-width="2"/>
+    <circle cx="200" cy="286" r="30" fill="none" stroke="#a33246" stroke-width="1"/>
+  </g>
+</svg>

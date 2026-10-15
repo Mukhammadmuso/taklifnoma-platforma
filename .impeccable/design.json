@@ -1,0 +1,594 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-14T18:40:29.237Z",
+  "title": "Design System: Taklifnoma",
+  "extensions": {
+    "colorMeta": {
+      "maktub-paper": {
+        "role": "neutral",
+        "displayName": "Laid Paper",
+        "world": "maktub",
+        "canonical": "oklch(94.5% 0.022 83)",
+        "tonalRamp": [
+          "#0c0b08",
+          "#272520",
+          "#45423c",
+          "#656159",
+          "#878278",
+          "#aaa499",
+          "#cfc8bb",
+          "#f6eedf"
+        ]
+      },
+      "maktub-card": {
+        "role": "neutral",
+        "displayName": "Card Stock",
+        "world": "maktub",
+        "canonical": "oklch(97.1% 0.015 86)",
+        "tonalRamp": [
+          "#0c0b09",
+          "#262522",
+          "#44423e",
+          "#63615c",
+          "#85827b",
+          "#a8a59d",
+          "#cdc9bf",
+          "#f3eee3"
+        ]
+      },
+      "maktub-ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "world": "maktub",
+        "canonical": "oklch(24.1% 0.027 38)",
+        "tonalRamp": [
+          "#140704",
+          "#31211c",
+          "#4e3e39",
+          "#6d5d59",
+          "#8d7f7a",
+          "#aea29e",
+          "#d1c6c3",
+          "#f5ecea"
+        ]
+      },
+      "maktub-ink-soft": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "world": "maktub",
+        "canonical": "oklch(42.7% 0.032 47)",
+        "tonalRamp": [
+          "#130804",
+          "#30211a",
+          "#503d34",
+          "#705c53",
+          "#907e75",
+          "#b2a199",
+          "#d5c6be",
+          "#f9ebe5"
+        ]
+      },
+      "maktub-wax": {
+        "role": "primary",
+        "displayName": "Sealing Wax Burgundy",
+        "world": "maktub",
+        "canonical": "oklch(38.0% 0.135 17)",
+        "tonalRamp": [
+          "#2a0000",
+          "#51000d",
+          "#7a1426",
+          "#9a3f47",
+          "#ba666a",
+          "#d98d8f",
+          "#f9b5b6",
+          "#ffdede"
+        ]
+      },
+      "maktub-wax-deep": {
+        "role": "primary",
+        "displayName": "Pressed Wax",
+        "world": "maktub",
+        "canonical": "oklch(27.0% 0.093 16)",
+        "tonalRamp": [
+          "#240002",
+          "#480815",
+          "#672d32",
+          "#864f52",
+          "#a67375",
+          "#c69799",
+          "#e6bebf",
+          "#ffe5e6"
+        ]
+      },
+      "maktub-wax-hover": {
+        "role": "primary",
+        "displayName": "Warm Wax",
+        "world": "maktub",
+        "canonical": "oklch(41.7% 0.146 17)",
+        "tonalRamp": [
+          "#2b0000",
+          "#52000c",
+          "#7c0e25",
+          "#a03944",
+          "#c06168",
+          "#df898d",
+          "#ffb1b4",
+          "#ffdbdc"
+        ]
+      },
+      "maktub-on-wax": {
+        "role": "primary",
+        "displayName": "Wax Lettering",
+        "world": "maktub",
+        "canonical": "oklch(96.6% 0.022 83)",
+        "tonalRamp": [
+          "#0c0b09",
+          "#272521",
+          "#45423c",
+          "#656159",
+          "#878279",
+          "#aaa499",
+          "#cfc8bc",
+          "#f5eedf"
+        ]
+      },
+      "maktub-gold": {
+        "role": "secondary",
+        "displayName": "Foil Gold",
+        "world": "maktub",
+        "canonical": "oklch(61.3% 0.102 78)",
+        "tonalRamp": [
+          "#180600",
+          "#371f00",
+          "#593c00",
+          "#7d5a19",
+          "#a37a33",
+          "#c49e60",
+          "#e6c38c",
+          "#ffeab9"
+        ]
+      },
+      "maktub-gold-ink": {
+        "role": "secondary",
+        "displayName": "Gold Ink",
+        "world": "maktub",
+        "canonical": "oklch(49.0% 0.086 79)",
+        "tonalRamp": [
+          "#180600",
+          "#362000",
+          "#583c02",
+          "#7b5b20",
+          "#9b7d4b",
+          "#bca174",
+          "#dec59e",
+          "#ffebc9"
+        ]
+      },
+      "maktub-gold-light": {
+        "role": "secondary",
+        "displayName": "Pale Foil",
+        "world": "maktub",
+        "canonical": "oklch(80.5% 0.093 87)",
+        "tonalRamp": [
+          "#120a00",
+          "#2f2305",
+          "#4f401b",
+          "#715f32",
+          "#96804b",
+          "#bca264",
+          "#e2c684",
+          "#ffecb0"
+        ]
+      },
+      "maktub-velvet": {
+        "role": "neutral",
+        "displayName": "Velvet",
+        "world": "maktub",
+        "canonical": "oklch(23.6% 0.075 13)",
+        "tonalRamp": [
+          "#200004",
+          "#41121b",
+          "#603338",
+          "#7e5458",
+          "#9e767a",
+          "#be9b9d",
+          "#dfc1c3",
+          "#ffe8e9"
+        ]
+      },
+      "maktub-velvet-deep": {
+        "role": "neutral",
+        "displayName": "Deep Velvet",
+        "world": "maktub",
+        "canonical": "oklch(17.4% 0.051 10)",
+        "tonalRamp": [
+          "#1b0207",
+          "#381b20",
+          "#56393d",
+          "#74595c",
+          "#947b7e",
+          "#b59fa1",
+          "#d6c4c6",
+          "#f9eaec"
+        ]
+      },
+      "maktub-liner": {
+        "role": "neutral",
+        "displayName": "Liner Burgundy",
+        "world": "maktub",
+        "canonical": "oklch(31.0% 0.106 16)",
+        "tonalRamp": [
+          "#260001",
+          "#4b0313",
+          "#6d272f",
+          "#8c4b50",
+          "#ac6f72",
+          "#cc9497",
+          "#ebbbbd",
+          "#ffe3e4"
+        ]
+      },
+      "maktub-error": {
+        "role": "error",
+        "displayName": "Error Ink",
+        "world": "maktub",
+        "canonical": "oklch(44.3% 0.166 20)",
+        "tonalRamp": [
+          "#2e0000",
+          "#560002",
+          "#81001a",
+          "#a82e38",
+          "#c95a5d",
+          "#e88483",
+          "#ffadab",
+          "#ffd7d5"
+        ]
+      },
+      "maktub-success": {
+        "role": "success",
+        "displayName": "Copied Green",
+        "world": "maktub",
+        "canonical": "oklch(42.4% 0.090 141)",
+        "tonalRamp": [
+          "#001100",
+          "#0a2e06",
+          "#244d20",
+          "#456d40",
+          "#698e64",
+          "#8eb08a",
+          "#b5d3b1",
+          "#ddf7da"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "base-body": {
+        "displayName": "Shared base",
+        "purpose": "Root text of every invitation (18px/1.6); templates replace the family through --inv-font-body. 16px is the floor anywhere."
+      },
+      "maktub-display": {
+        "displayName": "Maktub Display",
+        "purpose": "Couple's names in the hero (Latin). Long names step down to clamp(46px, 14.5cqi, 78px)."
+      },
+      "maktub-display-cyrl": {
+        "displayName": "Maktub Display (Cyrillic)",
+        "purpose": "Names under :lang(uz-Cyrl), set italic, because Great Vibes lacks Ғ Қ Ҳ."
+      },
+      "maktub-headline": {
+        "displayName": "Maktub Headline",
+        "purpose": "Section titles in wax; RSVP 50px, closing 46px, greeting and countdown state 40px."
+      },
+      "maktub-headline-cyrl": {
+        "displayName": "Maktub Headline (Cyrillic)",
+        "purpose": "Section titles under :lang(uz-Cyrl), italic; greeting 32px, closing 38px."
+      },
+      "maktub-numeral": {
+        "displayName": "Maktub Numeral",
+        "purpose": "Day of the month in the date section, wax."
+      },
+      "maktub-body": {
+        "displayName": "Maktub Body",
+        "purpose": "The invitation letter, notes, gift text; inputs at 20px."
+      },
+      "maktub-title": {
+        "displayName": "Maktub Title",
+        "purpose": "Programme item titles; venue name at 25px."
+      },
+      "maktub-label": {
+        "displayName": "Maktub Label",
+        "purpose": "Forum capitals for real labels: occasion, weekday, calendar caption, field labels, scroll cue, envelope address line, opening hint. Tracking 0.14–0.24em."
+      },
+      "maktub-button": {
+        "displayName": "Maktub Button",
+        "purpose": "Button text in the body face."
+      }
+    },
+    "shadows": [
+      {
+        "name": "maktub-page-on-velvet",
+        "value": "0 40px 80px rgb(10 0 3 / 0.55), 0 3px 8px rgb(10 0 3 / 0.4)",
+        "purpose": "The sheet floating on velvet, ≥600px only."
+      },
+      {
+        "name": "maktub-envelope",
+        "value": "0 26px 44px rgb(18 0 4 / 0.55), 0 4px 10px rgb(18 0 4 / 0.35)",
+        "purpose": "Envelope body during the opening."
+      },
+      {
+        "name": "maktub-card-on-page",
+        "value": "0 18px 36px rgb(60 20 10 / 0.14), 0 2px 5px rgb(60 20 10 / 0.08)",
+        "purpose": "RSVP reply card."
+      },
+      {
+        "name": "maktub-print-on-page",
+        "value": "0 12px 24px rgb(60 20 10 / 0.16), 0 2px 4px rgb(60 20 10 / 0.12)",
+        "purpose": "Host photo mounted as a print, rotated -1.2deg."
+      },
+      {
+        "name": "maktub-floating-control",
+        "value": "0 4px 12px rgb(20 0 4 / 0.25)",
+        "purpose": "Script switch and music button."
+      }
+    ],
+    "motion": [
+      {
+        "name": "inv-ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Shared: controls hide/show (0.35s), choice check draw (0.35s); Maktub programme thread and items."
+      },
+      {
+        "name": "inv-reduced-motion",
+        "value": "animation-duration / transition-duration 0.01ms !important",
+        "purpose": "Shared: everything under .inv collapses under prefers-reduced-motion; decorative motion is also gated on [data-motion=\"on\"]."
+      },
+      {
+        "name": "maktub-ink-draw",
+        "value": "1.15s cubic-bezier(0.65, 0, 0.35, 1) 0.25s",
+        "purpose": "Day ring draws itself (stroke-dashoffset) when the calendar enters view."
+      },
+      {
+        "name": "maktub-thread-grow",
+        "value": "1.6s cubic-bezier(0.16, 1, 0.3, 1); items 0.7s, delay i*70ms+150ms",
+        "purpose": "Programme gold thread grows, items settle 8px."
+      },
+      {
+        "name": "maktub-hero-thread",
+        "value": "2.8s cubic-bezier(0.65, 0, 0.35, 1) 0.6s infinite",
+        "purpose": "Scroll cue thread drips in, scaleY 0 to 1."
+      },
+      {
+        "name": "maktub-seal-pulse",
+        "value": "2.6s cubic-bezier(0.2, 0.7, 0.3, 1) 0.8s infinite",
+        "purpose": "Pale Foil ring around the idle seal, scale 0.96 to 1.45."
+      },
+      {
+        "name": "maktub-opening-timeline",
+        "value": "press 0 / crack 140 / open 560 / rise 1300 / out 2250 / done 3200 ms; reduced: out at 0, fade 0.35s, done 420 ms",
+        "purpose": "Envelope opening steps."
+      },
+      {
+        "name": "maktub-flap",
+        "value": "0.85s cubic-bezier(0.6, 0, 0.25, 1)",
+        "purpose": "Flap rotateX 180deg onto the liner."
+      },
+      {
+        "name": "maktub-letter-out",
+        "value": "0.85s cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Letter flies to the real sheet at scale 1."
+      },
+      {
+        "name": "maktub-stamp",
+        "value": "0.75s cubic-bezier(0.3, 0.6, 0.3, 1)",
+        "purpose": "Wax stamp presses onto the reply card: scale 1.9 / -24deg to scale 1 / -9deg with overshoot."
+      },
+      {
+        "name": "maktub-breathe",
+        "value": "2.8s ease-in-out infinite",
+        "purpose": "Music icon breathes (scale 1.08) while playing."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "maktub-float",
+        "value": "600px",
+        "purpose": "Sheet leaves edge-to-edge and floats on velvet; ground padding 56px 24px 72px."
+      },
+      {
+        "name": "sheet-max",
+        "value": "560px",
+        "purpose": "Shared sheet max width."
+      }
+    ],
+    "sharedLayer": {
+      "contract": "src/templates/contract.ts: TemplateMeta (palette, fonts, sectionOrder, defaultTexts, themeColor) + TemplateDefinition (Opening, decor, rootClassName, optional sections, optional Backdrop). Registry: one line in TEMPLATES, one in LOADERS.",
+      "tokens": [
+        "--inv-bg",
+        "--inv-surface",
+        "--inv-text",
+        "--inv-accent",
+        "--inv-accent2",
+        "--inv-muted",
+        "--inv-ground",
+        "--inv-font-heading",
+        "--inv-font-body",
+        "--inv-font-label",
+        "--inv-gutter",
+        "--inv-ease-out"
+      ],
+      "sectionOrder": [
+        "hero",
+        "invite",
+        "date",
+        "program",
+        "notes",
+        "venue",
+        "gift",
+        "rsvp",
+        "closing"
+      ],
+      "decorSlots": [
+        "Corner",
+        "Divider",
+        "Emblem",
+        "Bullet?",
+        "DayMark?",
+        "VenueArt?",
+        "Stamp?",
+        "Defs?"
+      ],
+      "rootAttributes": {
+        "lang": "uz-Latn | uz-Cyrl",
+        "data-phase": "sealed | opening | open",
+        "data-motion": "on | off",
+        "data-controls": "hidden (optional)"
+      },
+      "a11yFloor": [
+        "text ≥16px",
+        "targets ≥44px (buttons and inputs 48px, choice rows 52px)",
+        "focus-visible 2px accent outline, 3px offset",
+        "prefers-reduced-motion respected in CSS and in Opening",
+        "sheet inert and scroll locked until open"
+      ],
+      "scripts": [
+        "apos() wraps ‘ ’ ʻ ʼ ' in .inv-apos; every template styles it",
+        "display faces swap under :lang(uz-Cyrl) when coverage lacks Ғ Қ Ҳ"
+      ]
+    },
+    "platformUI": "World undecided: no tokens, type or components yet."
+  },
+  "components": [
+    {
+      "name": "Primary Button (Maktub)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Wax ribbon with an inset foil hairline; RSVP submit and the post-reply Telegram action.",
+      "html": "<button class=\"ds-btn-primary\">Javobni yuborish</button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 22px;font:400 17px/1.2 \"EB Garamond\",Georgia,serif;letter-spacing:.02em;color:#fbf3e4;background:#7a1426;border:1px solid transparent;border-radius:3px;outline:1px solid rgb(217 188 120 / .55);outline-offset:-5px;cursor:pointer;transition:background-color .2s ease,transform .15s ease}.ds-btn-primary:hover{background:#8a1a2e}.ds-btn-primary:active{transform:translateY(1px)}.ds-btn-primary:focus-visible{outline:2px solid #7a1426;outline-offset:3px;border-radius:4px}"
+    },
+    {
+      "name": "Line Button (Maktub)",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Ink on translucent card stock with a gold border; copy address, phone, calendar links.",
+      "html": "<button class=\"ds-btn-line\">Manzilni nusxalash</button>",
+      "css": ".ds-btn-line{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 22px;font:400 17px/1.2 \"EB Garamond\",Georgia,serif;color:#2b1b16;background:rgb(250 245 234 / .55);border:1px solid rgb(165 124 52 / .75);border-radius:3px;cursor:pointer;transition:background-color .2s ease,border-color .2s ease,transform .15s ease}.ds-btn-line:hover{background:rgb(122 20 38 / .06);border-color:#7a1426}.ds-btn-line:active{transform:translateY(1px)}.ds-btn-line:focus-visible{outline:2px solid #7a1426;outline-offset:3px;border-radius:4px}"
+    },
+    {
+      "name": "Ghost / Map Button (Maktub)",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Wax text, gold border; add-to-calendar trigger and venue map links.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Google xaritada</a>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 22px;font:400 17px/1.2 \"EB Garamond\",Georgia,serif;text-decoration:none;color:#7a1426;background:transparent;border:1px solid rgb(165 124 52 / .75);border-radius:3px;transition:background-color .2s ease,border-color .2s ease}.ds-btn-ghost:hover{background:rgb(122 20 38 / .06);border-color:#7a1426}.ds-btn-ghost:focus-visible{outline:2px solid #7a1426;outline-offset:3px;border-radius:4px}"
+    },
+    {
+      "name": "Underline Input (Maktub)",
+      "kind": "input",
+      "refersTo": "input-underline",
+      "description": "Writing on the line: no box, ink underline that turns wax on focus, Forum label in Gold Ink.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field__label\">Ismingiz</span><input class=\"ds-input\" placeholder=\"Ismingizni yozing\"></label>",
+      "css": ".ds-field{display:block;background:#faf5ea;padding:16px}.ds-field__label{display:block;margin-bottom:6px;font:400 16px \"Forum\",Georgia,serif;letter-spacing:.14em;text-transform:uppercase;color:#7a5a1f}.ds-input{display:block;width:100%;min-height:48px;padding:10px 2px;font:400 20px \"EB Garamond\",Georgia,serif;color:#2b1b16;background:transparent;border:0;border-bottom:1px solid rgb(43 27 22 / .4);border-radius:0;caret-color:#7a1426;transition:border-color .2s ease,box-shadow .2s ease}.ds-input::placeholder{color:#7a685e;font-style:italic}.ds-input:hover{border-bottom-color:rgb(43 27 22 / .6)}.ds-input:focus{outline:none;border-bottom-color:#7a1426;box-shadow:0 1px 0 #7a1426}"
+    },
+    {
+      "name": "Script Switch",
+      "kind": "nav",
+      "refersTo": "script-toggle-active",
+      "description": "Shared Lotin/Кирилл pill group; Maktub skin: card stock, gold border, active option in wax.",
+      "html": "<div class=\"ds-script\" role=\"group\" aria-label=\"Yozuv / Ёзув\"><button aria-pressed=\"true\">Lotin</button><button aria-pressed=\"false\">Кирилл</button></div>",
+      "css": ".ds-script{display:inline-flex;padding:3px;border-radius:999px;background:rgb(250 245 234 / .94);border:1px solid rgb(165 124 52 / .55);box-shadow:0 4px 12px rgb(20 0 4 / .25);font-family:\"EB Garamond\",Georgia,serif}.ds-script button{min-height:44px;min-width:48px;padding:6px 14px;border:0;border-radius:999px;font:inherit;font-size:16px;background:transparent;color:#2b1b16;cursor:pointer}.ds-script button[aria-pressed=\"true\"]{background:#7a1426;color:#fbf3e4}.ds-script button:focus-visible{outline:2px solid #7a1426;outline-offset:3px}"
+    },
+    {
+      "name": "Attending Choice (Maktub)",
+      "kind": "custom",
+      "description": "Hidden radio behind a 28px box; selection draws a wax check; 52px row.",
+      "html": "<label class=\"ds-choice\" data-checked><span class=\"ds-choice__box\"><svg viewBox=\"0 0 24 24\"><path d=\"M5 12.5l4.5 4.5L19 7\"/></svg></span>Albatta kelaman</label>",
+      "css": ".ds-choice{display:flex;align-items:center;gap:14px;min-height:52px;padding:8px 4px;font:400 19px \"EB Garamond\",Georgia,serif;color:#2b1b16;cursor:pointer}.ds-choice__box{display:grid;place-items:center;width:28px;height:28px;border:1.5px solid rgb(43 27 22 / .55);border-radius:3px;background:rgb(255 255 255 / .4);color:#7a1426}.ds-choice[data-checked] .ds-choice__box,.ds-choice:hover .ds-choice__box{border-color:#7a1426}.ds-choice__box svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .35s cubic-bezier(.16,1,.3,1)}.ds-choice[data-checked] .ds-choice__box svg{stroke-dashoffset:0}"
+    },
+    {
+      "name": "Gift Card (Maktub)",
+      "kind": "card",
+      "refersTo": "gift-card",
+      "description": "Card stock with a double gold frame; tabular card number grouped by fours.",
+      "html": "<div class=\"ds-gift\"><span class=\"ds-gift__number\">8600 1234 5678 9012</span></div>",
+      "css": ".ds-gift{display:flex;flex-direction:column;align-items:center;gap:12px;padding:18px 16px 16px;background:#faf5ea;border:1px solid rgb(165 124 52 / .55);outline:1px solid rgb(165 124 52 / .3);outline-offset:-6px;border-radius:2px}.ds-gift__number{font:400 23px \"EB Garamond\",Georgia,serif;letter-spacing:.08em;font-variant-numeric:lining-nums tabular-nums;white-space:nowrap;color:#2b1b16}"
+    },
+    {
+      "name": "Programme Thread (Maktub)",
+      "kind": "custom",
+      "description": "Time / diamond node / body grid on a gold thread down the margin.",
+      "html": "<ol class=\"ds-prog\"><li><span class=\"ds-prog__t\">17:00</span><span class=\"ds-prog__n\"></span><span class=\"ds-prog__b\">Mehmonlarni kutib olish</span></li><li><span class=\"ds-prog__t\">18:00</span><span class=\"ds-prog__n\"></span><span class=\"ds-prog__b\">Nikoh marosimi</span></li></ol>",
+      "css": ".ds-prog{position:relative;list-style:none;margin:0;padding:16px;background:#f4ecdd;max-width:420px}.ds-prog::before{content:\"\";position:absolute;top:26px;bottom:26px;left:calc(16px + 64px + 12px + 9.5px);width:1px;background:linear-gradient(#a57c34,#a57c34 85%,transparent)}.ds-prog li{display:grid;grid-template-columns:64px 20px 1fr;column-gap:12px;padding-bottom:28px}.ds-prog li:last-child{padding-bottom:0}.ds-prog__t{text-align:right;font:400 19px \"Forum\",Georgia,serif;letter-spacing:.04em;color:#7a1426;font-variant-numeric:lining-nums tabular-nums}.ds-prog__n{position:relative;justify-self:center;width:11px;height:11px;margin-top:10px;transform:rotate(45deg);background:#f4ecdd;border:1px solid #a57c34;box-shadow:0 0 0 4px #f4ecdd}.ds-prog__n::after{content:\"\";position:absolute;inset:2.5px;background:#7a1426}.ds-prog__b{font:600 19px/1.35 \"EB Garamond\",Georgia,serif;color:#2b1b16}"
+    },
+    {
+      "name": "Wax Seal (Maktub)",
+      "kind": "custom",
+      "description": "Signature object: the opening button and the RSVP stamp. Simplified preview of the lit wax body with initials and the idle foil pulse.",
+      "html": "<button class=\"ds-seal\" aria-label=\"Ochish uchun muhrni bosing\"><span class=\"ds-seal__pulse\"></span><svg viewBox=\"0 0 200 200\"><defs><radialGradient id=\"dsw\" cx=\".4\" cy=\".36\" r=\".75\"><stop offset=\"0\" stop-color=\"#A82C40\"/><stop offset=\".5\" stop-color=\"#7A1426\"/><stop offset=\"1\" stop-color=\"#470914\"/></radialGradient></defs><circle cx=\"100\" cy=\"100\" r=\"84\" fill=\"url(#dsw)\"/><circle cx=\"100\" cy=\"100\" r=\"61\" fill=\"#5E0D1B\" stroke=\"#C4566A\" stroke-opacity=\".5\" stroke-width=\"3\"/><text x=\"100\" y=\"118\" text-anchor=\"middle\" font-size=\"56\" fill=\"#A3293E\" font-family=\"Great Vibes, cursive\">BS</text></svg></button>",
+      "css": ".ds-seal{position:relative;width:120px;height:120px;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;transition:transform .14s ease}.ds-seal svg{display:block;width:100%;height:100%}.ds-seal:hover{transform:scale(1.03)}.ds-seal:active{transform:scale(.93)}.ds-seal:focus-visible{outline:2px solid #d9bc78;outline-offset:6px}.ds-seal__pulse{position:absolute;inset:4%;border-radius:50%;border:1.5px solid #d9bc78;opacity:0;animation:ds-pulse 2.6s cubic-bezier(.2,.7,.3,1) .8s infinite}@keyframes ds-pulse{0%{transform:scale(.96);opacity:.75}100%{transform:scale(1.45);opacity:0}}@media (prefers-reduced-motion:reduce){.ds-seal__pulse{animation:none;opacity:.6}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "One Contract, Many Letters",
+    "overview": "Taklifnoma is two layers. The durable layer is the shared template system: one TypeScript contract (`src/templates/contract.ts`), one renderer (`InvitationRenderer`), one structural stylesheet (`invitation.css`) that reads only `--inv-*` custom properties, and one fixed section anatomy that every template restyles through `.inv-*` class hooks. Nothing in that layer carries a colour, a typeface or an ornament of its own; it carries structure, the accessibility floor, the script handling and the opening hand-off. The second layer is a template world: a self-contained folder that supplies palette, fonts, an Opening scene, an SVG decor set and a CSS module scoped under its root class. Adding a design means adding one folder and one line in each of the two lists in `registry.ts`.\n\nThe first and so far only shipped world is **Maktub**. Its thesis, as built: *the phone is the letter.* The guest breaks a lit wax seal on a cream envelope lying on burgundy velvet, the flap swings back onto a gold-latticed liner, and the sheet that rises out of the envelope is the page itself, one continuous laid-paper letter read top to bottom. Gold is foil and appears as hairlines; burgundy is wax and ink; everything else is paper. Future worlds (Non, Shahzoda, Chinor, Anor) get their own sections in this file with their own palette prefix; none of them inherit Maktub's surface decisions.\n\n**Platform UI (landing, editor, dashboard, admin): world undecided.** No tokens, type or components exist for it yet. Do not reuse a template world (Maktub included) as the platform's look by default; that decision is still open.",
+    "keyCharacteristics": [
+      "Phone-first single column: one sheet, max 560px, centred on a template-owned ground.",
+      "Templates restyle; they never fork the renderer or hard-code invitation data.",
+      "Text ≥16px, every target ≥44px, visible focus, motion gated on the user's preference.",
+      "Latin and Cyrillic both read correctly from one entry; display faces are checked per script.",
+      "All decor is original inline SVG and CSS; the only raster is a host-supplied photo.",
+      "Maktub: laid cream paper, burgundy wax, foil-gold hairlines, girih stars, burgundy velvet ground."
+    ],
+    "rules": [
+      {
+        "name": "The Roles-Not-Values Rule",
+        "body": "`invitation.css` never names a colour. A template sets its palette in `meta.ts`; anything finer (wax hover, gold-ink, error ink) lives in the template's own CSS module under its own prefix.",
+        "section": "colors"
+      },
+      {
+        "name": "The Foil Is a Line Rule",
+        "body": "Foil gold draws lines, borders and small ornaments. Any gold you must read as words uses Gold Ink on paper or Pale Foil on velvet.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Wax Rule",
+        "body": "Burgundy is the only saturated hue on the paper. Green appears only in the momentary \"copied\" state.",
+        "section": "colors"
+      },
+      {
+        "name": "The Script-Checked Display Rule",
+        "body": "A display face is used only in the scripts it fully covers. Great Vibes lacks Ғ Қ Ҳ, so under `:lang(uz-Cyrl)` Maktub swaps `--inv-font-heading` to EB Garamond italic (-0.01em) at fixed Cyrillic sizes (names `clamp(48px, 15cqi, 76px)` / 1.04, titles 44px, greeting 32px, closing 38px), and the envelope name goes italic through `--mk-address-style`. The monogram keeps Great Vibes and falls back per glyph to EB Garamond.",
+        "section": "typography"
+      },
+      {
+        "name": "The Readable Apostrophe Rule",
+        "body": "Calligraphic faces draw o‘, g‘ and the tutuq belgisi too small or not at all. The shared `apos()` helper wraps ‘ ’ ʻ ʼ ' in `.inv-apos`; every template must style that hook. Maktub sets it in the body face, upright, at 0.6em with 0.03em side margins. Wrap every display string (names, titles, greeting, closing, guest name) with `apos()`.",
+        "section": "typography"
+      },
+      {
+        "name": "The Objects-Only Shadow Rule",
+        "body": "A Maktub shadow means a paper object resting on something. Buttons, inputs and labels stay flat on the paper.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** add a template as one folder (`meta.ts`, `index.tsx`, fonts, Opening, decor, CSS module) plus one line in each list in `registry.ts`; restyle through `:global(.inv-…)` under the template root class.",
+      "**Do** keep every text size at 16px or above and every interactive target at 44px or above (buttons and inputs 48px, choice rows 52px).",
+      "**Do** gate decorative animation on `[data-motion=\"on\"]`, give `Opening` a motionless path for `reducedMotion`, and keep the shared reduced-motion override intact.",
+      "**Do** verify each display face against both scripts and add a `:lang(uz-Cyrl)` swap when it lacks Ғ Қ Ҳ or Ў.",
+      "**Do** style `.inv-apos` in every template and pass every display string through `apos()`.",
+      "**Do** draw ornament as inline SVG sharing one `Defs` set; frame host photos as physical prints.",
+      "**Do** in Maktub, keep gold to hairlines and small ornaments and use Gold Ink for gold words.",
+      "**Do** in Maktub, keep motion to ink and wax: rings draw, threads grow, seals crack, stamps press."
+    ],
+    "donts": [
+      "**Don't** hard-code invitation text or data inside a template; everything arrives through `TextView` and the dictionary.",
+      "**Don't** fork or edit the renderer to get a template's look; override a section through `sections` in the definition only when restyling cannot do it.",
+      "**Don't** start music, or anything audible, before the guest's tap on the Opening.",
+      "**Don't** set Great Vibes on Cyrillic text.",
+      "**Don't** add generic per-section fade-ins in Maktub; motion belongs to the object it animates.",
+      "**Don't** use stock imagery, raster decor or video; host photos are the only raster.",
+      "**Don't** put tracked capitals above a title as an invented kicker; Forum capitals label real content (occasion, weekday, field names, captions).",
+      "**Don't** carry Maktub's palette, fonts or ornaments into another template or into the platform UI."
+    ]
+  }
+}

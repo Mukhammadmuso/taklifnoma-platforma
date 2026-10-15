@@ -1,0 +1,208 @@
+/*
+ * Shahzoda — kaptarlar sahnasi.
+ * Sahna shaffof: kaptarlar sahifadagi haqiqiy firuza arka ustida o'tiradi.
+ * Bosilganda ular har tomonga uchib ketadi, arka ichida shahzodaning ismi chiqadi.
+ */
+
+.stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 16px;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: opacity 0.5s ease;
+}
+
+.stage:focus-visible {
+  outline: none;
+}
+
+.stage:focus-visible .hint {
+  outline: 2px solid var(--sh-teal);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+
+/* ---------- Kimga ---------- */
+.address {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  max-width: min(78vw, 400px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.6s ease;
+}
+
+.event {
+  font-family: var(--sh-caps), serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  color: var(--sh-teal);
+  margin-bottom: 8px;
+}
+
+.to {
+  font-family: var(--sh-display), serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(24px, 6.4vw, 30px);
+  line-height: 1.2;
+  color: var(--sh-ink-soft);
+}
+
+.name {
+  font-family: var(--sh-display), serif;
+  font-weight: 600;
+  font-size: clamp(36px, 10vw, 50px);
+  line-height: 1.05;
+  color: var(--sh-ink);
+  overflow-wrap: anywhere;
+}
+
+.hint {
+  margin-top: 26px;
+  padding: 4px 8px;
+  font-family: var(--sh-caps), serif;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.14em;
+  color: var(--sh-gold-ink);
+}
+
+.stage[data-step="idle"]:not([data-reduced]) .hint {
+  animation: hint 2.8s ease-in-out 1.2s infinite;
+}
+
+@keyframes hint {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ---------- Kaptarlar ---------- */
+.dove {
+  position: absolute;
+  display: block;
+  transform: rotate(var(--tilt));
+  transform-origin: 50% 95%;
+  filter: drop-shadow(0 3px 3px rgb(10 50 55 / 0.22));
+  will-change: transform;
+}
+
+.dove svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.flip {
+  transform: scaleX(-1);
+}
+
+.dove :global(.sh-dove__wing) {
+  transform-box: view-box;
+  transform-origin: 38px 23px;
+}
+
+/* Kutish: kaptarlar sekin tebranib o'tiradi */
+.stage[data-step="idle"]:not([data-reduced]) .dove svg {
+  animation: bob 2.4s ease-in-out var(--bob) infinite;
+}
+
+@keyframes bob {
+  0%,
+  70%,
+  100% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(-2px);
+  }
+}
+
+.stage[data-step="idle"]:not([data-reduced]) .flip {
+  animation-name: bob-flip;
+}
+
+@keyframes bob-flip {
+  0%,
+  70%,
+  100% {
+    transform: scaleX(-1) translateY(0);
+  }
+  80% {
+    transform: scaleX(-1) translateY(-2px);
+  }
+}
+
+/* ================= Bosqichlar ================= */
+
+.stage:not([data-step="idle"]) {
+  cursor: default;
+}
+
+.stage:not([data-step="idle"]) .address {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.stage:not([data-step="idle"]) .hint {
+  animation: none;
+}
+
+/* Qanot qoqish */
+.stage:not([data-step="idle"]) .dove :global(.sh-dove__wing) {
+  animation: flap 0.2s ease-in-out infinite alternate;
+}
+
+@keyframes flap {
+  from {
+    transform: rotate(-18deg);
+  }
+  to {
+    transform: rotate(88deg);
+  }
+}
+
+.stage[data-step="lift"] .dove {
+  transform: translateY(-8px) rotate(var(--tilt));
+  transition: transform 0.22s ease-out;
+}
+
+/* Uchib ketish: har biri o'z yo'nalishida, biroz kechikib */
+.stage[data-step="fly"] .dove {
+  transform: translate(var(--fx), var(--fy)) rotate(var(--fr)) scale(0.82);
+  opacity: 0;
+  transition:
+    transform 1.5s cubic-bezier(0.4, 0, 0.75, 0.5) var(--fd),
+    opacity 0.5s ease calc(var(--fd) + 1s);
+}
+
+/* Harakatsiz rejim: faqat yumshoq so'nish */
+.stage[data-reduced][data-step="fly"] {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.stage[data-reduced] * {
+  animation: none !important;
+}
+
+.stage[data-reduced][data-step="fly"] * {
+  transition: none !important;
+  transform: none !important;
+}

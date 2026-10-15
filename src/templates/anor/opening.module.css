@@ -1,0 +1,290 @@
+/*
+ * Anor — ochilish sahnasi.
+ * Sahna shaffof: anor pushti varaq ustida turadi. Bosilganda yoriladi,
+ * ikki pallasi aylanib ichidagi donalarni ko'rsatadi, so'ng donalar sochiladi.
+ */
+
+.stage {
+  --w: min(76vw, 360px, calc(50svh * 400 / 440));
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 3svh, 30px);
+  padding: 64px 16px max(28px, env(safe-area-inset-bottom));
+  overflow: hidden;
+  transition: opacity 0.5s ease;
+}
+
+/* ---------- Kimga ---------- */
+.address {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  max-width: 420px;
+  text-align: center;
+  transition:
+    opacity 0.35s ease,
+    transform 0.5s ease;
+}
+
+.event {
+  font-family: var(--an-label), sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--an-red);
+  margin-bottom: 6px;
+}
+
+.to {
+  font-family: var(--an-display), serif;
+  font-style: italic;
+  font-size: clamp(22px, 6vw, 28px);
+  line-height: 1.2;
+  color: var(--an-ink-soft);
+}
+
+.name {
+  font-family: var(--an-display), serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(32px, 9vw, 46px);
+  line-height: 1.1;
+  color: var(--an-ink);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Anor ---------- */
+.fruit {
+  position: relative;
+  flex: none;
+  width: var(--w);
+  aspect-ratio: 400 / 440;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  perspective: 1400px;
+  transition: transform 0.16s ease;
+}
+
+.fruit:focus-visible {
+  outline: 2px solid var(--an-red);
+  outline-offset: 10px;
+  border-radius: 50%;
+}
+
+.shadow {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: -2%;
+  height: 14%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(90 10 30 / 0.35), transparent);
+  filter: blur(4px);
+  transition: opacity 0.4s ease;
+}
+
+.whole,
+.half,
+.front,
+.back,
+.seam {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.whole,
+.front {
+  overflow: visible;
+}
+
+.half {
+  display: block;
+  will-change: transform;
+  transform: translate(0, 0) rotateY(0deg) scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.95s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.front,
+.back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.stage:is([data-step="idle"], [data-step="press"]) .half,
+.stage:not([data-step="idle"]):not([data-step="press"]) .whole {
+  visibility: hidden;
+}
+
+.seam path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+
+.burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.burst svg {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  opacity: 0;
+  overflow: visible;
+}
+
+/* ---------- Ko'rsatma ---------- */
+.hint {
+  margin: 0;
+  font-family: var(--an-label), sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--an-red);
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+.stage[data-step="idle"]:not([data-reduced]) .hint {
+  animation: hint 2.8s ease-in-out 1.2s infinite;
+}
+
+@keyframes hint {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Kutish: anor sekin "nafas oladi" */
+.stage[data-step="idle"]:not([data-reduced]) .whole {
+  animation: breathe 3.6s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+@keyframes breathe {
+  50% {
+    transform: scale(1.018);
+  }
+}
+
+/* ================= Bosqichlar ================= */
+
+.stage:not([data-step="idle"]) .fruit {
+  cursor: default;
+}
+
+.stage:not([data-step="idle"]) .address,
+.stage:not([data-step="idle"]) .hint {
+  animation: none;
+  opacity: 0;
+}
+
+.stage:not([data-step="idle"]) .address {
+  transform: translateY(-12px);
+}
+
+.stage[data-step="press"] .fruit {
+  transform: scale(0.97);
+}
+
+.stage[data-step="crack"] .seam path {
+  opacity: 0.9;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.3s cubic-bezier(0.5, 0, 0.3, 1);
+}
+
+.stage[data-step="crack"] .fruit {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  30% {
+    transform: rotate(-1deg);
+  }
+  70% {
+    transform: rotate(0.8deg);
+  }
+}
+
+/* Ochilish: pallalar aylanib, ichidagi donalar ko'rinadi */
+.stage:is([data-step="open"], [data-step="burst"]) .shadow {
+  opacity: 0;
+}
+
+.stage:is([data-step="open"], [data-step="burst"]) .left {
+  transform: translate(-34%, 0) rotateY(-180deg) scale(0.6);
+}
+
+.stage:is([data-step="open"], [data-step="burst"]) .right {
+  transform: translate(34%, 0) rotateY(180deg) scale(0.6);
+}
+
+/* Donalar sochiladi, pallalar so'nadi */
+/* Shaffoflik .half ga emas, yuzalarga beriladi: aks holda brauzer 3D ni yassilaydi va palla orqaga aylanadi */
+.stage[data-step="burst"] :is(.front, .back) {
+  opacity: 0;
+  transition: opacity 0.6s ease 0.25s;
+}
+
+.stage[data-step="burst"] .left {
+  transform: translate(-46%, 10%) rotateY(-180deg) scale(0.5);
+}
+
+.stage[data-step="burst"] .right {
+  transform: translate(46%, 10%) rotateY(180deg) scale(0.5);
+}
+
+.stage[data-step="burst"] .burst svg {
+  animation: pop 1.2s cubic-bezier(0.15, 0.7, 0.3, 1) var(--bd) both;
+}
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4);
+  }
+  12% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--bx), var(--by)) rotate(var(--br)) scale(var(--bs));
+  }
+}
+
+/* Harakatsiz rejim: faqat yumshoq so'nish */
+.stage[data-reduced][data-step="burst"] {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.stage[data-reduced] * {
+  animation: none !important;
+}
+
+.stage[data-reduced][data-step="burst"] * {
+  transition: none !important;
+  transform: none !important;
+}

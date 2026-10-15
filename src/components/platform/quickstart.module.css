@@ -1,0 +1,58 @@
+.form {
+  display: grid;
+  gap: 22px;
+}
+
+.block {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.designs {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+  scroll-snap-type: x proximity;
+}
+
+.design {
+  flex: none;
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  width: 108px;
+  padding: 6px 6px 8px;
+  border: 1px solid var(--p-line-strong);
+  border-radius: var(--p-radius);
+  background: var(--p-surface);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--p-ink);
+  cursor: pointer;
+  scroll-snap-align: start;
+}
+
+.design img {
+  width: 96px;
+  height: 128px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.design[aria-pressed="true"] {
+  border-color: var(--p-accent);
+  box-shadow: 0 0 0 2px var(--p-accent);
+  background: var(--p-accent-soft);
+}
+
+.look {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+}

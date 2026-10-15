@@ -1,0 +1,621 @@
+/*
+ * Bosh sahifa — «oltin soat» tahririy uslubi:
+ * pergament kanvas, yengil (460) yirik sarlavhalar, jonli taklifnoma ustida suzuvchi shaffof kartalar,
+ * bitta to'q laguna band, atmosferali gradient va vino rangli footer.
+ */
+
+.page {
+  overflow-x: clip;
+}
+
+/* ---------------- Hero ---------------- */
+.hero {
+  position: relative;
+  padding: 64px 16px 72px;
+  background:
+    radial-gradient(48% 42% at 16% 34%, rgb(248 196 158 / 0.55), transparent 72%),
+    radial-gradient(44% 40% at 86% 26%, rgb(212 199 255 / 0.7), transparent 72%),
+    radial-gradient(60% 46% at 54% 100%, rgb(252 214 186 / 0.75), transparent 70%),
+    radial-gradient(40% 30% at 70% 70%, rgb(255 230 205 / 0.6), transparent 70%),
+    var(--p-bg);
+}
+
+.heroText {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  font-size: clamp(42px, 8.4vw, 64px);
+  font-weight: 460;
+  line-height: 0.98;
+  letter-spacing: -0.028em;
+  text-wrap: balance;
+}
+
+.lead {
+  max-width: 58ch;
+  margin: 20px auto 0 !important;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--p-ink-2);
+  text-wrap: pretty;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+/* Jonli namuna va uning yonida suzuvchi kartalar */
+.stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  max-width: 1000px;
+  margin: 48px auto 0;
+}
+
+.phone {
+  position: relative;
+  z-index: 1;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  height: 720px;
+  max-height: 78svh;
+  padding: 10px;
+  border-radius: 40px;
+  background: #1c1b19;
+}
+
+.phone iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 30px;
+  background: #22050b;
+}
+
+.float {
+  position: absolute;
+  z-index: 2;
+  width: 250px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgb(255 255 255 / 0.6);
+  background: rgb(255 255 255 / 0.82);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  font-size: 14px;
+}
+
+.floatLeft {
+  top: 22%;
+  left: max(0px, calc(50% - 440px));
+}
+
+.floatRight {
+  top: 52%;
+  right: max(0px, calc(50% - 430px));
+}
+
+.floatRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--p-lilac);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.floatName {
+  font-size: 16px;
+  font-weight: 540;
+}
+
+.floatMuted {
+  color: var(--p-ink-3);
+}
+
+.floatBadge {
+  display: inline-block;
+  margin-top: 12px !important;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--p-ok-soft);
+  color: var(--p-ok);
+  font-weight: 540;
+}
+
+.floatNum {
+  font-size: 48px;
+  font-weight: 460;
+  line-height: 1;
+  letter-spacing: -0.027em;
+  font-variant-numeric: tabular-nums;
+  margin: 4px 0 2px !important;
+}
+
+.floatBars {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.floatBars span {
+  display: block;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--p-accent);
+}
+
+.floatBars span + span {
+  background: var(--p-line-strong);
+}
+
+@media (max-width: 860px) {
+  .float {
+    display: none;
+  }
+}
+
+.caption {
+  font-size: 15px;
+  color: var(--p-ink-3);
+}
+
+/* ---------------- Umumiy bo'limlar ---------------- */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 88px 16px 0;
+}
+
+.sectionHead {
+  display: grid;
+  gap: 12px;
+  max-width: 720px;
+}
+
+.h2 {
+  font-size: clamp(32px, 5.4vw, 48px);
+  font-weight: 460;
+  line-height: 1;
+  letter-spacing: -0.027em;
+  text-wrap: balance;
+}
+
+.sectionLead {
+  max-width: 62ch;
+  margin-top: 12px !important;
+  font-size: 18px;
+  color: var(--p-ink-3);
+  text-wrap: pretty;
+}
+
+/* Qadamlar: tahririy qatorlar, katta yengil raqamlar */
+.steps {
+  list-style: none;
+  margin: 36px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  border-top: 1px solid var(--p-line);
+}
+
+.steps li {
+  padding: 24px 24px 8px 0;
+}
+
+.stepNum {
+  display: block;
+  font-size: 48px;
+  font-weight: 460;
+  line-height: 1;
+  letter-spacing: -0.027em;
+  color: var(--p-link);
+  font-variant-numeric: tabular-nums;
+}
+
+.stepTitle {
+  margin-top: 18px !important;
+  font-size: 20px;
+  font-weight: 540;
+  letter-spacing: -0.007em;
+}
+
+.stepText {
+  margin-top: 6px !important;
+  color: var(--p-ink-3);
+}
+
+/* ---------------- Dizaynlar ---------------- */
+.gallery {
+  list-style: none;
+  margin: 36px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(208px, 1fr));
+  gap: 16px;
+}
+
+
+.card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: var(--p-surface);
+  border: 1px solid var(--p-line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.cardImg {
+  display: block;
+  aspect-ratio: 4 / 4.2;
+  overflow: hidden;
+}
+
+.cardImg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .cardImg img {
+  transform: scale(1.03);
+}
+
+.cardBody {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 16px;
+}
+
+.cardName {
+  font-size: 22px;
+  font-weight: 540;
+  letter-spacing: -0.014em;
+}
+
+.cardTypes {
+  font-size: 14px;
+  color: var(--p-ink-3);
+}
+
+.cardDesc {
+  margin-top: 4px !important;
+  color: var(--p-ink-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-top: 10px;
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 460;
+}
+
+/* ---------------- To'q laguna band ---------------- */
+.lagoon {
+  margin-top: 96px;
+  background: var(--p-lagoon);
+  color: #fff;
+}
+
+.lagoonInner {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 16px;
+}
+
+@media (min-width: 900px) {
+  .lagoonInner {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+}
+
+/* Ustma-ust shaffof varaqlar va ular ustida mehmonlar ro'yxati */
+.collage {
+  position: relative;
+  min-height: 340px;
+}
+
+.sheet {
+  position: absolute;
+  border-radius: 16px;
+  opacity: 0.88;
+}
+
+.sheetA {
+  inset: 0 30% 24% 0;
+  background: var(--p-lilac);
+  transform: rotate(-4deg);
+}
+
+.sheetB {
+  inset: 18% 4% 8% 34%;
+  background: #f4a9b8;
+  transform: rotate(3deg);
+}
+
+.sheetC {
+  inset: 40% 46% 0 8%;
+  background: #8fb8f0;
+  transform: rotate(-2deg);
+}
+
+.guestCard {
+  position: relative;
+  max-width: 340px;
+  margin: 40px auto 0;
+  padding: 8px 16px;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--p-ink);
+}
+
+.guestRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--p-line);
+  font-weight: 540;
+}
+
+.guestRow:last-child {
+  border-bottom: 0;
+}
+
+.guestBadge {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--p-sunken);
+  color: var(--p-ink-3);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge_ok {
+  background: var(--p-ok-soft);
+  color: var(--p-ok);
+}
+
+.badge_info {
+  background: var(--p-accent-soft);
+  color: #5a3a96;
+}
+
+.lagoonTitle {
+  font-size: clamp(36px, 5.6vw, 56px);
+  font-weight: 460;
+  line-height: 0.98;
+  letter-spacing: -0.028em;
+  text-wrap: balance;
+}
+
+.lagoonLead {
+  max-width: 52ch;
+  margin-top: 20px !important;
+  font-size: 18px;
+  color: rgb(255 255 255 / 0.82);
+}
+
+.outlineBtn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 28px;
+  padding: 0 20px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  color: #fff !important;
+  font-weight: 540;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease;
+}
+
+.outlineBtn:hover {
+  background: rgb(255 255 255 / 0.1);
+}
+
+.outlineBtn:focus-visible {
+  outline-color: #fff;
+}
+
+/* ---------------- Ichida nimalar bor ---------------- */
+.inside {
+  margin: 36px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px 48px;
+}
+
+.inside div {
+  padding-top: 18px;
+  border-top: 1px solid var(--p-line);
+}
+
+.inside dt {
+  font-size: 19px;
+  font-weight: 540;
+  letter-spacing: -0.007em;
+}
+
+.inside dd {
+  margin: 6px 0 0;
+  color: var(--p-ink-3);
+}
+
+/* ---------------- Atmosferali gradient band ---------------- */
+.glow {
+  margin-top: 96px;
+  background:
+    radial-gradient(40% 80% at 68% 50%, rgb(180 150 255 / 0.55), transparent 70%),
+    radial-gradient(34% 70% at 93% 50%, rgb(140 180 255 / 0.5), transparent 70%),
+    radial-gradient(50% 60% at 50% 98%, rgb(250 180 200 / 0.55), transparent 70%),
+    radial-gradient(40% 60% at 50% 75%, rgb(160 230 235 / 0.45), transparent 70%),
+    var(--p-bg);
+}
+
+.glowInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 88px 16px;
+}
+
+.whiteBtn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--p-ink) !important;
+  font-weight: 540;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease;
+}
+
+.whiteBtn:hover {
+  background: #f7f5f0;
+}
+
+/* ---------------- Footer ---------------- */
+.footer {
+  background: var(--p-accent);
+  color: #fff;
+}
+
+.footerInner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 16px 32px;
+}
+
+.footerBrand {
+  max-width: 320px;
+}
+
+.footerName {
+  font-size: 22px;
+  font-weight: 540;
+  letter-spacing: -0.014em;
+}
+
+.footerMuted {
+  margin-top: 8px !important;
+  font-size: 14px;
+  color: rgb(255 255 255 / 0.7);
+}
+
+.footer nav {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+}
+
+.footerHead {
+  margin-bottom: 6px !important;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.footer nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  font-size: 14px;
+  color: rgb(255 255 255 / 0.72) !important;
+}
+
+.footer nav a:hover {
+  color: #fff !important;
+}
+
+.footer :focus-visible {
+  outline-color: #fff;
+}
+
+.copy {
+  max-width: 1200px;
+  margin: 0 auto !important;
+  padding: 16px 16px 40px;
+  border-top: 1px solid rgb(255 255 255 / 0.14);
+  font-size: 14px;
+  color: rgb(255 255 255 / 0.6);
+}
+
+/* Telefonda ikki ustun: rasm va nom, tavsif yashiriladi */
+@media (max-width: 560px) {
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .cardBody {
+    padding: 12px;
+  }
+
+  .cardName {
+    font-size: 19px;
+  }
+
+  .cardDesc {
+    display: none;
+  }
+
+  .cardActions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+
+  .more {
+    font-size: 15px;
+    white-space: nowrap;
+  }
+}

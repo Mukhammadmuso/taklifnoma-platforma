@@ -1,4 +1,4 @@
-// Ma'lumotlar modeli. Lokal: SQLite. Prod: provider = "postgresql" ga almashtiriladi.
+// Ma'lumotlar modeli. PostgreSQL (lokal va hosting uchun bir xil). Lokal test: Neon yoki Docker postgres.
 // Enum o'rniga String ishlatilgan (SQLite/Postgres ikkalasida bir xil ishlashi uchun);
 // ruxsat etilgan qiymatlar src/lib/schema.ts dagi zod sxemalarida tekshiriladi.
 
@@ -7,7 +7,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 

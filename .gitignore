@@ -12,3 +12,5 @@ prisma/*.db-journal
 .impeccable/review
 uploads
 .impeccable/review/
+
+.pgdata

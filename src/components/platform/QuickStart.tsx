@@ -20,7 +20,7 @@ export type QuickInitial = {
 function Submit() {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" className="p-btn p-btn--primary p-btn--block" disabled={pending} style={{ minHeight: 52, fontSize: 17 }}>
+    <button type="submit" className="p-btn p-btn--primary p-btn--block animate-flip" disabled={pending} style={{ minHeight: 52, fontSize: 17 }}>
       {pending ? "Tayyorlanmoqda…" : "Taklifnomani yaratish"}
     </button>
   );
@@ -46,7 +46,7 @@ export function QuickStart({ templates, initial }: { templates: TemplateMeta[]; 
             <button
               key={t.id}
               type="button"
-              className={s.design}
+              className={`${s.design} animate-flip`}
               aria-pressed={t.id === template.id}
               onClick={() => setTemplateId(t.id)}
             >
@@ -64,7 +64,7 @@ export function QuickStart({ templates, initial }: { templates: TemplateMeta[]; 
         <legend className="p-label">Tadbir</legend>
         <div className="p-options" style={{ marginTop: 8 }}>
           {template.supportedEventTypes.map((e) => (
-            <label key={e} className="p-option" aria-checked={e === type} style={{ minHeight: 48 }}>
+            <label key={e} className="p-option animate-flip" aria-checked={e === type} style={{ minHeight: 48 }}>
               <input type="radio" name="eventType" value={e} checked={e === type} onChange={() => setEventType(e)} className="p-sr" />
               <strong>{EVENT_LABELS[e]}</strong>
             </label>

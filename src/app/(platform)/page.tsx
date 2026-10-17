@@ -47,14 +47,14 @@ export default async function HomePage() {
             To‘y, fotiha, yubiley yoki tug‘ilgan kun uchun jonli raqamli taklifnoma — bir necha daqiqada. Havolasini mehmonlarga yuborasiz, javoblarni shu yerda kuzatasiz.
           </p>
           <div className={s.ctaRow}>
-            <Link href="/kabinet/yangi" className="p-btn p-btn--primary">
+            <Link href="/kabinet/yangi" className="p-btn p-btn--primary animate-flip">
               Boshlash — bepul
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
             </Link>
-            <a href="#dizaynlar" className="p-btn p-btn--ghost">
-              Dizaynlarni ko‘rish
+            <a href="#dizaynlar" className="p-btn p-btn--ghost animate-flip">
+              Dizaynlarni ko’rish
             </a>
           </div>
         </div>

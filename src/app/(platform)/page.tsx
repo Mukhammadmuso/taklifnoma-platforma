@@ -129,11 +129,11 @@ export default async function HomePage() {
                 <p className={s.cardTypes}>{t.supportedEventTypes.map((e) => EVENT_LABELS[e]).join(" · ")}</p>
                 <p className={s.cardDesc}>{t.description}</p>
                 <div className={s.cardActions}>
-                  <Link className="p-btn p-btn--sm p-btn--lilac" href={`/kabinet/yangi?dizayn=${t.id}`}>
+                  <Link className="p-btn p-btn--sm p-btn--lilac animate-flip" href={`/kabinet/yangi?dizayn=${t.id}`}>
                     Shuni tanlash
                   </Link>
-                  <a className={s.more} href={`/namuna/${t.id}`}>
-                    Namunani ko‘rish →
+                  <a className={`${s.more} animate-flip`} href={`/namuna/${t.id}`}>
+                    Namunani ko’rish →
                   </a>
                 </div>
               </div>
@@ -165,7 +165,7 @@ export default async function HomePage() {
             <p className={s.lagoonLead}>
               Ro‘yxatni bir marta joylaysiz. Har kimning taklifnomasi «Hurmatli Aziza opa» deb ochiladi, Telegram yoki WhatsApp’ga bir bosishda yuboriladi. Kim ochgani, kim kelishi va necha kishi ekani kabinetda ko‘rinadi, ro‘yxatni Excel’ga yuklab olasiz.
             </p>
-            <Link href="/kabinet/yangi" className={s.outlineBtn}>
+            <Link href="/kabinet/yangi" className={`${s.outlineBtn} animate-flip`}>
               Taklifnoma yaratish
             </Link>
           </div>
@@ -198,7 +198,7 @@ export default async function HomePage() {
               Taklifnoma yaratish, tahrirlash va mehmonlarga yuborish — bepul. E’lon qilingan sahifada kichik «Namuna» belgisi turadi; uni olib tashlash narxi tez orada e’lon qilinadi.
             </p>
           </div>
-          <Link href="/kabinet/yangi" className={s.whiteBtn}>
+          <Link href="/kabinet/yangi" className={`${s.whiteBtn} animate-flip`}>
             Boshlash
           </Link>
         </div>

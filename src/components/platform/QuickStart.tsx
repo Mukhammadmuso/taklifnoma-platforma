@@ -21,7 +21,7 @@ function Submit() {
   const { pending } = useFormStatus();
   return (
     <button type="submit" className="p-btn p-btn--primary p-btn--block animate-flip" disabled={pending} style={{ minHeight: 52, fontSize: 17 }}>
-      {pending ? "Tayyorlanmoqda…" : "Taklifnomani yaratish"}
+      <span>{pending ? "Tayyorlanmoqda…" : "Taklifnomani yaratish"}</span>
     </button>
   );
 }
@@ -51,7 +51,7 @@ export function QuickStart({ templates, initial }: { templates: TemplateMeta[]; 
               onClick={() => setTemplateId(t.id)}
             >
               <img src={t.previewImage} alt="" width={96} height={128} loading="lazy" decoding="async" />
-              <span>{t.name}</span>
+              <span><span>{t.name}</span></span>
             </button>
           ))}
         </div>
@@ -66,7 +66,7 @@ export function QuickStart({ templates, initial }: { templates: TemplateMeta[]; 
           {template.supportedEventTypes.map((e) => (
             <label key={e} className="p-option animate-flip" aria-checked={e === type} style={{ minHeight: 48 }}>
               <input type="radio" name="eventType" value={e} checked={e === type} onChange={() => setEventType(e)} className="p-sr" />
-              <strong>{EVENT_LABELS[e]}</strong>
+              <strong><span>{EVENT_LABELS[e]}</span></strong>
             </label>
           ))}
         </div>

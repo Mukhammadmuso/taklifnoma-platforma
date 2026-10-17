@@ -48,13 +48,13 @@ export default async function HomePage() {
           </p>
           <div className={s.ctaRow}>
             <Link href="/kabinet/yangi" className="p-btn p-btn--primary animate-flip">
-              Boshlash — bepul
+              <span>Boshlash — bepul</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
             </Link>
             <a href="#dizaynlar" className="p-btn p-btn--ghost animate-flip">
-              Dizaynlarni ko’rish
+              <span>Dizaynlarni ko’rish</span>
             </a>
           </div>
         </div>
@@ -130,10 +130,10 @@ export default async function HomePage() {
                 <p className={s.cardDesc}>{t.description}</p>
                 <div className={s.cardActions}>
                   <Link className="p-btn p-btn--sm p-btn--lilac animate-flip" href={`/kabinet/yangi?dizayn=${t.id}`}>
-                    Shuni tanlash
+                    <span>Shuni tanlash</span>
                   </Link>
                   <a className={`${s.more} animate-flip`} href={`/namuna/${t.id}`}>
-                    Namunani ko’rish →
+                    <span>Namunani ko’rish →</span>
                   </a>
                 </div>
               </div>
@@ -166,7 +166,7 @@ export default async function HomePage() {
               Ro‘yxatni bir marta joylaysiz. Har kimning taklifnomasi «Hurmatli Aziza opa» deb ochiladi, Telegram yoki WhatsApp’ga bir bosishda yuboriladi. Kim ochgani, kim kelishi va necha kishi ekani kabinetda ko‘rinadi, ro‘yxatni Excel’ga yuklab olasiz.
             </p>
             <Link href="/kabinet/yangi" className={`${s.outlineBtn} animate-flip`}>
-              Taklifnoma yaratish
+              <span>Taklifnoma yaratish</span>
             </Link>
           </div>
         </div>
@@ -199,7 +199,7 @@ export default async function HomePage() {
             </p>
           </div>
           <Link href="/kabinet/yangi" className={`${s.whiteBtn} animate-flip`}>
-            Boshlash
+            <span>Boshlash</span>
           </Link>
         </div>
       </section>
